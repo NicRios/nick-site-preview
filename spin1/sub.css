@@ -20,13 +20,17 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:6
 @media(max-width:760px){.navlinks{display:none}}
 
 /* article */
-.artwrap{max-width:760px;margin:0 auto;padding:0 36px}
-.arthead{padding:84px 0 30px}
+.artwrap{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(20px,5vw,36px)}
+/* wide variant for grid/listing pages (contact, case studies, field-notes index) */
+.artwrap.wide{max-width:1040px}
+.artwrap.wide .dek{max-width:78ch}
+.artwrap.wide .art>p,.artwrap.wide .art>ul,.artwrap.wide .art>ol,.artwrap.wide .art>blockquote{max-width:72ch}
+.arthead{padding:clamp(52px,9vw,84px) 0 30px}
 .back{font-family:var(--mono);font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:.2s}
 .back:hover{color:var(--accent);gap:11px}
 .cat{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:26px 0 18px;display:flex;align-items:center;gap:10px}.cat::before{content:"";width:24px;height:1px;background:var(--accent)}
-.arttitle{font-family:var(--serif);font-weight:500;font-size:46px;line-height:1.07;letter-spacing:-0.02em}
-.dek{margin-top:20px;font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink-2)}
+.arttitle{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5.2vw,46px);line-height:1.07;letter-spacing:-0.02em}
+.dek{margin-top:20px;font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);line-height:1.5;color:var(--ink-2)}
 .artmeta{margin-top:26px;padding:16px 0;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}.artmeta b{color:var(--ink)}.artmeta .sep{color:var(--faint)}
 
 .art{padding:14px 0 30px}
@@ -75,4 +79,5 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}body{animation:none}}
-@media(max-width:840px){.arttitle{font-size:34px}.kv{grid-template-columns:1fr}}
+@media(max-width:840px){.kv{grid-template-columns:1fr}}
+@media(max-width:760px){.artmeta{font-size:11.5px;gap:8px}}
