@@ -56,7 +56,7 @@
   .case .ch{font-family:var(--serif);font-size:22px;margin-bottom:8px}
   .case .lead{font-size:14.5px;color:var(--ink-2);margin-bottom:10px}.case .lead b{color:var(--ink)}
   .case .body{font-size:13.5px;color:var(--muted);flex:1}
-  .case .metric{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent);border-top:1px dashed var(--line-2);padding-top:11px}
+  .case .metric{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent);border-top:1px dashed var(--line-2);padding-top:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   /* offer */
   .ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-2);border-radius:12px;overflow:hidden}
   .rung{padding:26px 22px;border-right:1px solid var(--line-2);background:#fff}.rung:last-child{border-right:none}.rung.feature{background:var(--accent-soft)}.rung .rn{font-family:var(--mono);font-size:11px;color:var(--faint)}.rung h4{font-family:var(--serif);font-size:21px;font-weight:500;margin:8px 0 6px}.rung .first{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:8px}.rung p{font-size:13.5px;color:var(--muted)}.rung .guar{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent);border-top:1px solid var(--line-2);padding-top:11px}
@@ -87,7 +87,7 @@
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}body,.hero .eyebrow,.hero h1,.hero .sub,.hero .brandline,.hero .ctas,.heroimg{animation:none!important;opacity:1!important}}
   @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:300px;position:static}}
 </style></head><body>
-<nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about">About</a><a href="#work">Work</a><a href="#notes">Field Notes</a></div><a class="navcta" href="#notes">Subscribe</a></div></nav>
+<nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about">About</a><a href="#work">Work</a><a href="field-notes.html">Field Notes</a></div><a class="navcta" href="field-notes.html">Subscribe</a></div></nav>
 
 <header class="hero"><div class="wrap">
   <div class="hgrid">
@@ -96,7 +96,7 @@
       <h1>Your AI works in the demo.<br>I make it <em>survive production.</em></h1>
       <p class="sub">I help founders and data/AI teams ship AI into <b>regulated, data-sensitive production</b> — tested against real traffic, safe under a security review. Not a demo. The whole solution.</p>
       <p class="brandline">I deploy AI agents into real workflows and ship the outcome — from Ewa Beach, Hawaii, on the work's clock, not the office's.</p>
-      <div class="ctas"><a href="#contact" class="btn mag">Book a working session →</a><a href="#notes" class="lnk">Read Field Notes →</a></div>
+      <div class="ctas"><a href="contact.html" class="btn mag">Let's work together →</a><a href="field-notes.html" class="lnk">Read Field Notes →</a></div>
     </div>
     <div class="heroimg"><img src="nick.jpg" alt="Nick Rios"></div>
   </div>
@@ -223,67 +223,21 @@
 
 <section id="work"><div class="wrap"><div class="kicker">Selected work — case studies</div>
   <div class="cases">
-    <a class="case reveal" href="work/gostly.html"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team — without touching production.</div><div class="body">Designed &amp; built a self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock agents are tested against. No live vendor calls, no prod data in CI, no LLM in the hot path.</div><div class="metric">My role: architecture + build, end-to-end → Read the case study</div></a>
-    <a class="case reveal" href="work/canary.html"><div class="ctag">Release engineering · Kubernetes · forward-deployed</div><div class="ch">Canary production deployment</div><div class="lead"><b>Per-request canary rollout for a multi-tenant backend</b> — promote or roll back with one command.</div><div class="body">Forward-deployed into an unfamiliar Kubernetes codebase. Built a Kustomize stable/canary overlay using nginx-ingress canary annotations for per-request traffic splitting — chosen over replica-ratio splitting, which would couple the split to pod count. One-command deploy / promote / rollback via a Makefile, plus an incident runbook (503-after-promotion triage — capture logs before rollback, <code>rollout undo</code>) and a hardening plan: smoke-test gate before promote, gradual 10→25→50→100 ramp, auto-rollback on a failed rollout.</div><div class="metric">Owned: deployment design, traffic-splitting strategy, runbook → Read the case study</div></a>
-    <a class="case reveal" href="work/callbar.html"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built a real-time Zoom + Microsoft sync into the integration suite — the missing capability that helped move $1M+ deals across the line.</div><div class="metric">2020 · custom middleware + real-time integrations → Read the case study</div></a>
-    <a class="case reveal" href="work/ucla.html"><div class="ctag">0→1 · founder</div><div class="ch">UCLA-backed venture</div><div class="lead"><b>Co-founded a peer-to-peer rental marketplace</b> for college campuses, out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs, led agile development and the campus-by-campus go-to-market — the first time I owned a product, and a two-sided marketplace, from idea to pitch.</div><div class="metric">2017–18 · co-founder → Read the case study</div></a>
+    <a class="case reveal" href="work/gostly.html"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team — without touching production.</div><div class="body">A self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock for testing agents — no live vendor calls, no prod data in CI.</div><div class="metric">Architecture + build · Read →</div></a>
+    <a class="case reveal" href="work/canary.html"><div class="ctag">Release engineering · Kubernetes · forward-deployed</div><div class="ch">Canary production deployment</div><div class="lead"><b>Per-request canary rollout for a multi-tenant backend</b> — promote or roll back with one command.</div><div class="body">Forward-deployed into an unfamiliar Kubernetes codebase: a per-request canary rollout, with one-command deploy, promote, and rollback — plus the runbook to operate it.</div><div class="metric">Deployment design + runbook · Read →</div></a>
+    <a class="case reveal" href="work/callbar.html"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built the real-time Zoom + Microsoft sync into the integration suite — the missing capability that unblocked enterprise evaluations and moved $1M+ in deals across the line.</div><div class="metric">Custom integration, 2020 · Read →</div></a>
+    <a class="case reveal" href="work/ucla.html"><div class="ctag">0→1 · founder</div><div class="ch">UCLA-backed venture</div><div class="lead"><b>Co-founded a peer-to-peer rental marketplace</b> for college campuses, out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs and led the campus-by-campus go-to-market — my first time owning a product, and a two-sided marketplace, from idea to pitch.</div><div class="metric">Co-founder, 2017 · Read →</div></a>
   </div>
 </div></section>
 
 <style>
 .brandline{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--accent);max-width:50ch;line-height:1.45}
-.fntop{display:grid;grid-template-columns:1.4fr .9fr;gap:40px;align-items:end;margin-bottom:32px}
-.fntop h2{margin-bottom:0}.fnlead{font-size:16px;color:var(--muted);max-width:52ch;margin-top:14px}
-.subform label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);display:block;margin-bottom:10px}
-.subform .row{display:flex;gap:8px}.subform input{flex:1;border:1px solid var(--line-2);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:13px;background:#fff;color:var(--ink)}
-.subform .btn2{font-family:var(--mono);font-size:13px;background:var(--ink);color:var(--paper);border:none;border-radius:8px;padding:0 18px;cursor:pointer}.subform .btn2:hover{background:var(--accent)}
-.subform .fine{font-family:var(--mono);font-size:10.5px;color:var(--faint);display:block;margin-top:9px}
-.fngrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fncard{border:1px solid var(--line-2);border-radius:12px;padding:20px;background:#fff;display:flex;flex-direction:column;transition:.2s}
-a.fncard:hover{border-color:var(--accent);transform:translateY(-2px)}
-.fncard .meta{display:flex;gap:8px;margin-bottom:12px;align-items:center}
-.badge{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:5px;background:var(--ink);color:var(--paper)}
-.badge.essay{background:var(--accent)}.badge.til{background:#9a7b2e}.badge.log{background:#3a5a8a}
-.mat{font-family:var(--mono);font-size:10px;color:var(--faint)}
-.fncard .fnt{font-family:var(--serif);font-size:20px;margin-bottom:8px}.fncard p{font-size:13.5px;color:var(--muted);flex:1}
-.fncard .fnl{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent)}
-.fnnote{margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--muted)}.fnnote b{color:var(--ink)}
-@media(max-width:840px){.fntop,.fngrid{grid-template-columns:1fr}}
 </style>
-<section id="notes"><div class="wrap"><div class="kicker">Field Notes — the newsletter</div>
-  <div class="fntop">
-    <div><h2>Notes on deploying AI agents into the real world.</h2><p class="fnlead">Agent skills, hard-won lessons, and ideas — from a forward-deployed engineer who ships from Hawaii. Written for the people who actually have to put agents into production.</p></div>
-    <form class="subform" onsubmit="return false"><label>Get Field Notes in your inbox</label><div class="row"><input type="email" placeholder="you@company.com" aria-label="email"><button class="btn2">Subscribe</button></div><span class="fine">Roughly fortnightly. No spam, unsubscribe anytime.</span></form>
-  </div>
-  <div class="fngrid">
-    <a class="fncard reveal" href="notes/redaction-floor.html"><div class="meta"><span class="badge">Skill</span><span class="mat">Evergreen</span></div><div class="fnt">redaction-floor</div><p>A copy-pasteable agent skill that enforces a PII redact-floor before any LLM call — with "use when / never use when" and the data-leak it prevents.</p><span class="fnl">Copy the skill →</span></a>
-    <a class="fncard reveal" href="notes/deterministic-replay.html"><div class="meta"><span class="badge essay">Essay</span><span class="mat">Budding</span></div><div class="fnt">Deterministic replay for agents</div><p>How to make a non-deterministic system testable: capture-and-replay, verbatim vs redacted, and what it buys you in CI.</p><span class="fnl">Read →</span></a>
-    <a class="fncard reveal" href="notes/test-outcomes.html"><div class="meta"><span class="badge til">TIL</span><span class="mat">Seedling</span></div><div class="fnt">Test outcomes, not outputs</div><p>The one-line litmus that kills 80% of useless agent tests: would it still pass against a broken implementation?</p><span class="fnl">Read →</span></a>
-    <a class="fncard reveal" href="notes/building-gostly.html"><div class="meta"><span class="badge log">Log</span><span class="mat">Budding</span></div><div class="fnt">Building Gostly in public</div><p>One shipped milestone, one hard decision, one number — every month.</p><span class="fnl">Follow along →</span></a>
-  </div>
-  <div class="fnnote">Four formats — <b>Skills</b> (copy-pasteable agent recipes) · <b>Notes / TIL</b> (quick) · <b>Essays</b> (the deep takes) · <b>Logs</b> (building Gostly in public).</div>
-</div></section>
-
-<section><div class="wrap"><div class="kicker">Work with me</div>
-  <h2 style="margin-bottom:32px">Three ways in. Each scoped, priced with a floor, and guaranteed.</h2>
-  <div class="ladder">
-    <div class="rung reveal"><div class="rn">01 · fixed fee</div><h4>Discovery Sprint</h4><div class="first">First step: a scoped architecture audit</div><p>An audit of your AI system and a ranked production-readiness roadmap — what's blocking it, in priority order.</p><div class="guar">✓ Keep the roadmap either way.</div></div>
-    <div class="rung feature reveal"><div class="rn">02 · forward-deployed</div><h4>Embedded Build</h4><div class="first">First step: a 2-week embedded sprint</div><p>I parachute in and ship the working solution your team can't finish.</p><div class="guar">✓ Work continues free if deliverables don't land.</div></div>
-    <div class="rung reveal"><div class="rn">03 · retainer</div><h4>Advisory</h4><div class="first">First step: a monthly architecture review</div><p>A fractional AI-execution lead on call for the judgment calls.</p><div class="guar">✓ Month-to-month.</div></div>
-  </div>
-</div></section>
-
-<section><div class="wrap"><div class="kicker">Honest fit</div>
-  <div class="qual">
-    <div class="qbox yes reveal"><div class="qh">This is for you if —</div><ul><li>You have AI that demos well but isn't production-trustworthy.</li><li>You're in a regulated or data-sensitive environment.</li><li>You want someone who ships the thing, not a deck.</li></ul></div>
-    <div class="qbox no reveal"><div class="qh">This isn't for you if —</div><ul><li>You want a logo on a slide and a quarterly check-in.</li><li>You want the cheapest hands, not the outcome.</li><li>"Good enough for the demo" is good enough.</li></ul></div>
-  </div>
-</div></section>
 
 <section class="contact" id="contact"><div class="wrap">
   <h2>Have an AI system stuck between demo and production?</h2>
   <p class="csub">Tell me where it's stuck. If it's a fit, we'll book a working session — if it isn't, I'll tell you that too.</p>
-  <div class="row"><a href="#" class="btn mag">Book a working session →</a><span class="copyemail" id="copy" data-email="nick@nick-rios.com">nick@nick-rios.com <span class="c">copy</span></span></div>
+  <div class="row"><a href="contact.html" class="btn mag">Let's work together →</a><span class="copyemail" id="copy" data-email="n.rios.1997@gmail.com">n.rios.1997@gmail.com <span class="c">copy</span></span></div>
 </div></section>
 <footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto;padding:0 36px"><span>NICK RIOS · Engineer · Architect · Builder · Ewa Beach, HI 🌊</span><span>I make AI agents survive production.</span></div></footer>
 

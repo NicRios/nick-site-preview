@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Notes — deploying AI agents into the real world · Nick Rios</title>
+<meta name="description" content="Agent skills, hard-won lessons, and ideas from a forward-deployed engineer who ships from Hawaii — written for people putting agents into production.">
+<link rel="stylesheet" href="sub.css">
+<style>
+  .fntop{display:grid;grid-template-columns:1.4fr .9fr;gap:40px;align-items:end;margin:18px 0 36px}
+  .fntop h2{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.1;margin-bottom:0;letter-spacing:-0.01em}
+  .fnlead{font-size:16px;color:var(--muted);max-width:52ch;margin-top:14px}
+  .subform label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);display:block;margin-bottom:10px}
+  .subform .row{display:flex;gap:8px}.subform input{flex:1;border:1px solid var(--line-2);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:13px;background:#fff;color:var(--ink)}.subform input:focus{outline:none;border-color:var(--accent)}
+  .subform .btn2{font-family:var(--mono);font-size:13px;background:var(--ink);color:var(--paper);border:none;border-radius:8px;padding:0 18px;cursor:pointer;transition:.2s}.subform .btn2:hover{background:var(--accent)}
+  .subform .fine{font-family:var(--mono);font-size:10.5px;color:var(--faint);display:block;margin-top:9px}
+  .fngrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .fncard{border:1px solid var(--line-2);border-radius:12px;padding:22px;background:#fff;display:flex;flex-direction:column;transition:.2s}
+  a.fncard:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 44px -28px rgba(0,78,114,.5)}
+  .fncard .meta{display:flex;gap:8px;margin-bottom:12px;align-items:center}
+  .badge{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:5px;background:var(--ink);color:var(--paper)}
+  .badge.essay{background:var(--accent)}.badge.til{background:#9a7b2e}.badge.log{background:#3a5a8a}
+  .mat{font-family:var(--mono);font-size:10px;color:var(--faint)}
+  .fncard .fnt{font-family:var(--serif);font-size:21px;margin-bottom:8px}.fncard p{font-size:14px;color:var(--muted);flex:1;line-height:1.55}
+  .fncard .fnl{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+  .fnnote{margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--muted)}.fnnote b{color:var(--ink)}
+  @media(max-width:840px){.fntop,.fngrid{grid-template-columns:1fr}}
+</style>
+</head><body>
+<nav><div class="wrap"><a class="logo" href="index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="index.html#about">About</a><a href="index.html#work">Work</a><a href="field-notes.html">Field Notes</a></div></div></nav>
+
+<div class="artwrap">
+  <header class="arthead">
+    <a class="back" href="index.html">← Home</a>
+    <div class="cat">Field Notes — the newsletter</div>
+    <div class="fntop">
+      <div><h2 id="subscribe">Notes on deploying AI agents into the real world.</h2><p class="fnlead">Agent skills, hard-won lessons, and ideas — from a forward-deployed engineer who ships from Hawaii. Written for the people who actually have to put agents into production.</p></div>
+      <form class="subform" id="subform"><label>Get Field Notes in your inbox</label><div class="row"><input type="email" id="subem" placeholder="you@company.com" aria-label="email" required><button class="btn2" type="submit">Subscribe</button></div><span class="fine">Roughly fortnightly. No spam, unsubscribe anytime.</span></form>
+    </div>
+  </header>
+
+  <section style="padding:0;border:none">
+  <div class="fngrid">
+    <a class="fncard reveal" href="notes/redaction-floor.html"><div class="meta"><span class="badge">Skill</span><span class="mat">Evergreen</span></div><div class="fnt">redaction-floor</div><p>A copy-pasteable agent skill that enforces a PII redact-floor before any LLM call — with "use when / never use when" and the data-leak it prevents.</p><span class="fnl">Copy the skill →</span></a>
+    <a class="fncard reveal" href="notes/deterministic-replay.html"><div class="meta"><span class="badge essay">Essay</span><span class="mat">Budding</span></div><div class="fnt">Deterministic replay for agents</div><p>How to make a non-deterministic system testable: capture-and-replay, verbatim vs redacted, and what it buys you in CI.</p><span class="fnl">Read →</span></a>
+    <a class="fncard reveal" href="notes/test-outcomes.html"><div class="meta"><span class="badge til">TIL</span><span class="mat">Seedling</span></div><div class="fnt">Test outcomes, not outputs</div><p>The one-line litmus that kills 80% of useless agent tests: would it still pass against a broken implementation?</p><span class="fnl">Read →</span></a>
+    <a class="fncard reveal" href="notes/building-gostly.html"><div class="meta"><span class="badge log">Log</span><span class="mat">Budding</span></div><div class="fnt">Building Gostly in public</div><p>One shipped milestone, one hard decision, one number — every month.</p><span class="fnl">Follow along →</span></a>
+  </div>
+  <div class="fnnote">Four formats — <b>Skills</b> (copy-pasteable agent recipes) · <b>Notes / TIL</b> (quick) · <b>Essays</b> (the deep takes) · <b>Logs</b> (building Gostly in public).</div>
+  </section>
+
+  <div class="nextrow">
+    <a href="index.html#work">← See the work</a>
+    <a href="contact.html">Let's work together →</a>
+  </div>
+</div>
+
+<footer><div class="wrap"><span>NICK RIOS · Field Notes 🌊</span><span>Deploying AI agents into the real world.</span></div></footer>
+<script src="sub.js"></script>
+<script>
+  var sf=document.getElementById('subform');
+  if(sf)sf.addEventListener('submit',function(e){e.preventDefault();var em=document.getElementById('subem').value;location.href='mailto:n.rios.1997@gmail.com?subject='+encodeURIComponent('Subscribe to Field Notes')+'&body='+encodeURIComponent('Please add me to Field Notes: '+em);});
+</script>
+</body></html>
