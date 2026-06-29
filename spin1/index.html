@@ -12,7 +12,7 @@
   .brand{display:flex;align-items:center;gap:11px}.avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line-2)}
   .logo{font-family:var(--mono);font-size:13px;letter-spacing:.06em}.logo b{color:var(--accent)}
   .navcta{font-family:var(--mono);font-size:12.5px;border-bottom:1px solid var(--ink);padding-bottom:2px}
-  .navlinks{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}.navlinks a:hover{color:var(--accent)}@media(max-width:760px){.navlinks{display:none}}
+  .navlinks{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}.navlinks a{transition:color .2s;position:relative}.navlinks a:hover{color:var(--accent)}.navlinks a.active{color:var(--accent)}.navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:var(--accent);border-radius:2px}@media(max-width:760px){.navlinks{display:none}}
   /* hero */
   .hero{padding:96px 0 40px}
   .hgrid{display:grid;grid-template-columns:1.55fr .9fr;gap:48px;align-items:center}
@@ -87,7 +87,7 @@
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}body,.hero .eyebrow,.hero h1,.hero .sub,.hero .brandline,.hero .ctas,.heroimg{animation:none!important;opacity:1!important}}
   @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:300px;position:static}}
 </style></head><body>
-<nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about">About</a><a href="#work">Work</a><a href="field-notes.html">Field Notes</a></div><a class="navcta" href="field-notes.html">Subscribe</a></div></nav>
+<nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about" data-spy="about">About</a><a href="#experience" data-spy="experience">Experience</a><a href="#capabilities" data-spy="capabilities">Capabilities</a><a href="#work" data-spy="work">Work</a><a href="field-notes.html">Field Notes</a></div><a class="navcta" href="resume.html">Résumé ↓</a></div></nav>
 
 <header class="hero"><div class="wrap">
   <div class="hgrid">
@@ -196,7 +196,7 @@
 .acvbul li b{color:var(--ink)}
 .acvbul sup{font-size:.55em;vertical-align:.55em;margin-left:1px}
 </style>
-<section><div class="wrap"><div class="kicker">Experience: forward-deployed before it had a name</div>
+<section id="experience"><div class="wrap"><div class="kicker">Experience: forward-deployed before it had a name</div>
   <div class="exp">
     <div class="role reveal"><div class="rtop"><div class="rco">Tonic.ai</div><div class="rdate">2022 – Present</div></div>
       <div class="rtitle">Senior Solutions Architect</div>
@@ -223,12 +223,92 @@
 
 <section id="work"><div class="wrap"><div class="kicker">Selected work: case studies</div>
   <div class="cases">
-    <a class="case reveal" href="work/gostly.html"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team, without ever touching production.</div><div class="body">A self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock for testing agents. No live vendor calls, no prod data in CI.</div><div class="metric">Architecture + build · Read →</div></a>
-    <a class="case reveal" href="work/canary.html"><div class="ctag">Release engineering · Kubernetes · forward-deployed</div><div class="ch">Canary production deployment</div><div class="lead"><b>Per-request canary rollout for a multi-tenant backend.</b> Promote or roll back with one command.</div><div class="body">Forward-deployed into an unfamiliar Kubernetes codebase: a per-request canary rollout, with one-command deploy, promote, and rollback, plus the runbook to operate it.</div><div class="metric">Deployment design + runbook · Read →</div></a>
-    <a class="case reveal" href="work/callbar.html"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built the real-time Zoom + Microsoft sync into the integration suite. It was the missing capability that unblocked enterprise evaluations and moved $1M+ in deals across the line.</div><div class="metric">Custom integration, 2020 · Read →</div></a>
-    <a class="case reveal" href="work/ucla.html"><div class="ctag">0→1 · founder</div><div class="ch">UCLA-backed venture</div><div class="lead"><b>Co-founded a peer-to-peer rental marketplace</b> for college campuses, out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs and led the campus-by-campus go-to-market. My first time owning a product, and a two-sided marketplace, from idea to pitch.</div><div class="metric">Co-founder, 2017 · Read →</div></a>
+    <a class="case reveal" href="work/gostly.html"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch" style="view-transition-name:vt-gostly">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team, without ever touching production.</div><div class="body">A self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock for testing agents. No live vendor calls, no prod data in CI.</div><div class="metric">Architecture + build · Read →</div></a>
+    <a class="case reveal" href="work/canary.html"><div class="ctag">Release engineering · Kubernetes · forward-deployed</div><div class="ch" style="view-transition-name:vt-canary">Canary production deployment</div><div class="lead"><b>Per-request canary rollout for a multi-tenant backend.</b> Promote or roll back with one command.</div><div class="body">Forward-deployed into an unfamiliar Kubernetes codebase: a per-request canary rollout, with one-command deploy, promote, and rollback, plus the runbook to operate it.</div><div class="metric">Deployment design + runbook · Read →</div></a>
+    <a class="case reveal" href="work/callbar.html"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch" style="view-transition-name:vt-callbar">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built the real-time Zoom + Microsoft sync into the integration suite. It was the missing capability that unblocked enterprise evaluations and moved $1M+ in deals across the line.</div><div class="metric">Custom integration, 2020 · Read →</div></a>
+    <a class="case reveal" href="work/ucla.html"><div class="ctag">0→1 · founder</div><div class="ch" style="view-transition-name:vt-ucla">UCLA-backed venture</div><div class="lead"><b>Co-founded a peer-to-peer rental marketplace</b> for college campuses, out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs and led the campus-by-campus go-to-market. My first time owning a product, and a two-sided marketplace, from idea to pitch.</div><div class="metric">Co-founder, 2017 · Read →</div></a>
   </div>
 </div></section>
+
+<style>
+.cap-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.chip-f{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:8px 15px;cursor:pointer;background:#fff;transition:.18s}
+.chip-f:hover{border-color:var(--accent);color:var(--accent)}
+.chip-f.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.skills-grid{display:flex;gap:10px;flex-wrap:wrap}
+.skill{font-family:var(--mono);font-size:13px;color:var(--ink-2);border:1px solid var(--line-2);border-radius:8px;padding:8px 13px;background:#fff;transition:opacity .25s,border-color .2s,color .2s}
+.skill.dim{opacity:.25}
+.skill.hot{border-color:var(--accent);color:var(--accent)}
+.cap-proof{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:20px;min-height:20px}
+.cap-proof a{color:var(--accent);border-bottom:1px solid var(--line-2)}.cap-proof a:hover{border-color:var(--accent)}
+</style>
+<section id="capabilities"><div class="wrap"><div class="kicker">What I work with</div>
+  <h2 style="margin-bottom:14px">Capabilities</h2>
+  <p style="color:var(--muted);font-size:15px;margin-bottom:24px;max-width:60ch">Filter by domain to see the tools, and where I've put them to work.</p>
+  <div class="cap-chips" id="capChips">
+    <button class="chip-f on" data-cat="all">All</button>
+    <button class="chip-f" data-cat="ai">AI / ML</button>
+    <button class="chip-f" data-cat="cloud">Cloud &amp; Infra</button>
+    <button class="chip-f" data-cat="frame">Frameworks</button>
+    <button class="chip-f" data-cat="data">Data &amp; Integration</button>
+    <button class="chip-f" data-cat="lang">Languages</button>
+    <button class="chip-f" data-cat="cert">Certifications</button>
+  </div>
+  <div class="skills-grid" id="skillsGrid">
+    <span class="skill" data-cat="ai">RAG pipelines</span>
+    <span class="skill" data-cat="ai">LoRA / PEFT fine-tuning</span>
+    <span class="skill" data-cat="ai">Prompt engineering</span>
+    <span class="skill" data-cat="ai">Eval &amp; confidence scoring</span>
+    <span class="skill" data-cat="cloud">AWS</span>
+    <span class="skill" data-cat="cloud">GCP</span>
+    <span class="skill" data-cat="cloud">Azure</span>
+    <span class="skill" data-cat="cloud">Docker</span>
+    <span class="skill" data-cat="cloud">Kubernetes</span>
+    <span class="skill" data-cat="cloud">CI/CD</span>
+    <span class="skill" data-cat="cloud">Prometheus</span>
+    <span class="skill" data-cat="frame">Next.js</span>
+    <span class="skill" data-cat="frame">FastAPI</span>
+    <span class="skill" data-cat="frame">React</span>
+    <span class="skill" data-cat="frame">Axum</span>
+    <span class="skill" data-cat="frame">Tailwind</span>
+    <span class="skill" data-cat="data">PostgreSQL</span>
+    <span class="skill" data-cat="data">REST APIs</span>
+    <span class="skill" data-cat="data">ETL</span>
+    <span class="skill" data-cat="data">ODBC</span>
+    <span class="skill" data-cat="data">CRM / CDP</span>
+    <span class="skill" data-cat="data">Salesforce</span>
+    <span class="skill" data-cat="lang">Python</span>
+    <span class="skill" data-cat="lang">TypeScript</span>
+    <span class="skill" data-cat="lang">JavaScript</span>
+    <span class="skill" data-cat="lang">Rust</span>
+    <span class="skill" data-cat="lang">SQL</span>
+    <span class="skill" data-cat="lang">Java</span>
+    <span class="skill" data-cat="lang">C++</span>
+    <span class="skill" data-cat="cert">AWS Cloud Practitioner</span>
+    <span class="skill" data-cat="cert">AWS Containerized Apps</span>
+    <span class="skill" data-cat="cert">Google IT Support</span>
+  </div>
+  <div class="cap-proof" id="capProof"></div>
+</div></section>
+<script>
+(function(){
+  var chips=document.getElementById('capChips'); if(!chips) return;
+  var skills=[].slice.call(document.querySelectorAll('#skillsGrid .skill'));
+  var proof=document.getElementById('capProof');
+  var map={ai:['Gostly','work/gostly.html'],cloud:['the canary deployment','work/canary.html'],data:['Talkdesk Callbar','work/callbar.html'],frame:['Gostly','work/gostly.html']};
+  chips.addEventListener('click',function(e){
+    var b=e.target.closest('.chip-f'); if(!b) return;
+    [].forEach.call(chips.children,function(c){c.classList.toggle('on',c===b);});
+    var cat=b.getAttribute('data-cat');
+    skills.forEach(function(s){
+      var m=cat==='all'||s.getAttribute('data-cat')===cat;
+      s.classList.toggle('dim',!m); s.classList.toggle('hot',m&&cat!=='all');
+    });
+    proof.innerHTML=(cat==='all'||!map[cat])?'':'Proven in &rarr; <a href="'+map[cat][1]+'">'+map[cat][0]+'</a>';
+  });
+  var hm=location.hash.match(/cap=(\w+)/);if(hm){var hb=chips.querySelector('[data-cat="'+hm[1]+'"]');if(hb)hb.click();}
+})();
+</script>
 
 <style>
 .brandline{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--accent);max-width:50ch;line-height:1.45}
@@ -275,4 +355,10 @@
   setTimeout(function(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){el.classList.add('in');});},2000);
   // nav shadow on scroll
   var nv=document.querySelector('nav');var ns=function(){nv.classList.toggle('scrolled',window.scrollY>8);};ns();window.addEventListener('scroll',ns,{passive:true});
+  // scroll-spy: highlight the nav link for the section in view
+  var spyLinks={};document.querySelectorAll('.navlinks a[data-spy]').forEach(function(a){spyLinks[a.getAttribute('data-spy')]=a;});
+  var spy=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){for(var k in spyLinks)spyLinks[k].classList.remove('active');if(spyLinks[e.target.id])spyLinks[e.target.id].classList.add('active');}
+  });},{rootMargin:'-45% 0px -50% 0px'});
+  ['about','experience','capabilities','work'].forEach(function(id){var el=document.getElementById(id);if(el)spy.observe(el);});
 </script></body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nick Rios — Résumé</title>
+<style>
+  :root{--paper:#f6f1e7;--ink:#1b2a36;--ink-2:#44535f;--muted:#6a7a86;--faint:#9aa6ae;--line:#e6ddcd;--line-2:#dccfb9;--accent:#004e72;--mono:ui-monospace,"SF Mono",Menlo,monospace;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--serif:"Georgia","Times New Roman",serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .sheet{max-width:860px;margin:30px auto;background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:48px 52px;box-shadow:0 30px 70px -40px rgba(20,30,38,.4)}
+  .top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:22px}
+  h1{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-0.02em}
+  .role{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.04em;margin-top:6px}
+  .contact{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+  .contact a{color:var(--ink-2);text-decoration:none}.contact .sep{color:var(--faint)}
+  .cols{display:grid;grid-template-columns:1.7fr 1fr;gap:34px}
+  h2{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;padding-top:4px}
+  .summary{font-size:14.5px;color:var(--ink-2);margin-bottom:24px}
+  .job{margin-bottom:18px}
+  .job .h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .job .co{font-family:var(--serif);font-size:17px}.job .dt{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .job .ti{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin:3px 0 7px}
+  .job ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+  .job li{font-size:13.5px;color:var(--ink-2);padding-left:15px;position:relative;line-height:1.5}
+  .job li::before{content:"–";position:absolute;left:0;color:var(--accent)}
+  .blk{margin-bottom:22px}
+  .blk .lbl{font-family:var(--mono);font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+  .blk .val{font-size:13px;color:var(--ink-2);margin-bottom:10px;line-height:1.5}.blk .val b{color:var(--ink)}
+  .proj{margin-bottom:13px}.proj b{font-family:var(--serif);font-weight:500;font-size:14.5px;color:var(--ink)}.proj p{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.45}
+  .printbtn{position:fixed;bottom:22px;right:22px;font-family:var(--mono);font-size:13px;background:#ff6f43;color:#fff;border:none;border-radius:8px;padding:13px 20px;cursor:pointer;box-shadow:0 12px 30px -16px rgba(255,111,67,.8)}
+  .back{position:fixed;top:22px;left:22px;font-family:var(--mono);font-size:12px;color:var(--muted);text-decoration:none}.back:hover{color:var(--accent)}
+  @media(max-width:720px){.cols{grid-template-columns:1fr}.sheet{padding:30px 24px}}
+  @media print{
+    body{background:#fff}.sheet{margin:0;border:none;box-shadow:none;border-radius:0;padding:0;max-width:none}
+    .printbtn,.back{display:none}
+    h1{font-size:26px}.job li,.summary{font-size:11.5px}.cols{gap:24px}
+    @page{margin:14mm}
+  }
+</style>
+</head><body>
+<a class="back" href="index.html">← back to site</a>
+<div class="sheet">
+  <div class="top">
+    <h1>Nick Rios</h1>
+    <div class="role">Forward-Deployed Engineer &amp; Solutions Architect</div>
+    <div class="contact">
+      <span>Ewa Beach, Hawaii</span><span class="sep">·</span>
+      <a href="mailto:n.rios.1997@gmail.com">n.rios.1997@gmail.com</a><span class="sep">·</span>
+      <a href="https://www.linkedin.com/in/nicolas-rios-039038108/">linkedin.com/in/nicolas-rios</a><span class="sep">·</span>
+      <a href="https://nick-rios.com">nick-rios.com</a>
+    </div>
+  </div>
+
+  <p class="summary">Solutions architect and forward-deployed engineer with 7+ years getting AI and integrations into regulated, data-sensitive production. I own the technical sale end to end, from architecture through the cutover. Work has ranged from cloud-native architecture for securing Australian classified documents to developer tooling for enterprise financial institutions in Texas. Based in Hawaii, working remotely with teams anywhere.</p>
+
+  <div class="cols">
+    <div>
+      <h2>Experience</h2>
+      <div class="job">
+        <div class="h"><span class="co">Tonic.ai</span><span class="dt">2022 – Present</span></div>
+        <div class="ti">Senior Solutions Architect</div>
+        <ul>
+          <li>Technical lead on enterprise deals; own the technical sale end to end: discovery, architecture, custom demos, evaluation, and deployment.</li>
+          <li><b>~$3M</b> in new &amp; expansion ACV directly attributed; <b>~$5M</b> including renewals and out-year ramp.</li>
+          <li>Stood up enterprise motion across strategic accounts, trading logo count for far higher ACV per deal.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="h"><span class="co">Clearbit <span style="font-family:var(--sans);font-weight:400;color:var(--faint);font-size:12px">(acquired by HubSpot)</span></span><span class="dt">2021 – 2022</span></div>
+        <div class="ti">Senior Technical Support Engineer</div>
+        <ul>
+          <li>Re-implemented enterprise solutions across platforms; owned the hardest enterprise escalations.</li>
+          <li>Built automation and reusable playbooks that cut first-response and resolution time by <b>50%+</b>.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="h"><span class="co">Talkdesk</span><span class="dt">2019 – 2021</span></div>
+        <div class="ti">Integrations / Expert Services Engineer</div>
+        <ul>
+          <li>Built custom middleware and Salesforce integrations that moved <b>$1M+</b> in deals across the line.</li>
+          <li>Shipped real-time Zoom + Microsoft sync into the Callbar integration suite.</li>
+          <li>Authored the implementation methodology the services team still runs on.</li>
+        </ul>
+      </div>
+
+      <h2 style="margin-top:8px">Selected projects</h2>
+      <div class="proj"><b>Gostly</b><p>Self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock for testing AI agents. No LLM in the hot path; single-tenant.</p></div>
+      <div class="proj"><b>UCLA-backed venture</b><p>Co-founded a peer-to-peer rental marketplace for college campuses. Pitched angels and VCs; led development and go-to-market.</p></div>
+    </div>
+
+    <div>
+      <div class="blk">
+        <h2>Skills</h2>
+        <div class="lbl">AI / ML</div><div class="val">RAG pipelines, LoRA / PEFT fine-tuning, prompt engineering, eval &amp; confidence scoring</div>
+        <div class="lbl">Cloud &amp; Infra</div><div class="val">AWS, GCP, Azure, Docker, Kubernetes, CI/CD, Prometheus</div>
+        <div class="lbl">Languages</div><div class="val">Python, TypeScript, Rust, SQL, Java, C++</div>
+        <div class="lbl">Frameworks</div><div class="val">Next.js, FastAPI, React, Axum, Tailwind</div>
+        <div class="lbl">Data &amp; Integration</div><div class="val">PostgreSQL, REST APIs, ETL, ODBC, CRM / CDP, Salesforce</div>
+      </div>
+      <div class="blk">
+        <h2>Education</h2>
+        <div class="val"><b>UCLA</b><br>B.S. Electrical &amp; Computer Engineering<br><span style="font-family:var(--mono);font-size:11px;color:var(--faint)">2015 – 2019</span></div>
+      </div>
+      <div class="blk">
+        <h2>Certifications</h2>
+        <div class="val">AWS Cloud Practitioner<br>AWS Containerized Apps<br>Google IT Support</div>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="printbtn" onclick="window.print()">Save as PDF ↓</button>
+</body></html>
