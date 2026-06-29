@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deterministic replay for agents · Field Notes · Nick Rios</title>
+<meta name="description" content="How to make a non-deterministic system testable: capture-and-replay, verbatim vs redacted, generalization, and what it buys you in CI.">
+<link rel="stylesheet" href="../sub.css">
+</head><body>
+<nav><div class="wrap"><a class="logo" href="../index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="../index.html#about">About</a><a href="../index.html#work">Work</a><a href="../index.html#notes">Field Notes</a></div></div></nav>
+
+<div class="artwrap">
+  <header class="arthead">
+    <a class="back" href="../index.html#notes">← Field Notes</a>
+    <div class="cat">Essay · Budding</div>
+    <h1 class="arttitle">Deterministic replay for agents</h1>
+    <p class="dek">An agent is a non-deterministic system calling other non-deterministic systems. Here's how you make that testable without lying to yourself.</p>
+    <div class="artmeta"><span><b>Format:</b> essay</span><span class="sep">·</span><span><b>Maturity:</b> budding</span><span class="sep">·</span><span><b>Read:</b> ~6 min</span></div>
+  </header>
+
+  <article class="art">
+    <p class="reveal">The first time you try to write a real test for an AI agent, you hit a wall that doesn't exist for normal software: <b>the system under test is non-deterministic, and so are its dependencies.</b> The model picks different words each run. The vendor API returns different data, rate-limits you, or has an outage during your CI run. You can't assert on exact output, and you can't rely on the upstream being there. Most teams respond by not testing the agent at all.</p>
+
+    <h3 class="reveal">Pin the dependencies, not the model</h3>
+    <p class="reveal">The move is to make the <em>environment</em> deterministic, even though the agent isn't. Capture real upstream traffic once — every request the agent makes and every response it gets — then replay that capture in CI. The agent still thinks freely; it just talks to a recording instead of the live world. Now a test failure means <b>the agent changed</b>, not that a third party had a bad afternoon.</p>
+
+    <h4 class="reveal">Verbatim vs redacted — you need both</h4>
+    <p class="reveal">There's a real tension here. For <b>replay fidelity</b> you want the capture verbatim — exact bytes, exact ordering. For <b>safety</b> you can't keep customer PII and secrets sitting in a fixture file that lands in your repo. The answer is two surfaces:</p>
+    <ul class="reveal">
+      <li>An in-memory, verbatim capture for the <b>active session</b>, where fidelity matters and the data never outlives the run.</li>
+      <li>A <b>redacted-by-default</b> persisted corpus — scrubbed before it's written — that's safe to keep, share, and build on. Verbatim persistence is opt-in and scoped, never the default.</li>
+    </ul>
+
+    <h3 class="reveal">The hard part: generalization</h3>
+    <p class="reveal">Naive replay matches requests by exact hash. It works until the agent asks something one character different from what you recorded — then it 404s, and your "test" is just asserting that you recorded the exact script. Real agents don't replay scripts; they improvise around a theme.</p>
+    <p class="reveal">So the replay layer has to <b>generalize</b>: given an unseen-but-similar request, synthesize a coherent response in the right shape, with the right status, consistent with what it learned from the captured corpus. The discipline is to do that <b>offline</b> — learn the generalization from the corpus ahead of time — so that at test time replay stays deterministic and fast. The moment you put a live model in the replay hot path, you've reintroduced exactly the non-determinism and latency you were trying to delete.</p>
+
+    <blockquote class="reveal">Determinism isn't about freezing the agent. It's about freezing the world the agent runs against.</blockquote>
+
+    <h3 class="reveal">What it buys you</h3>
+    <ul class="reveal">
+      <li><b>Tests that fail for one reason:</b> the agent's behavior changed.</li>
+      <li><b>CI with no live vendor calls</b> — no quota burned, no rate limits, no flakes, no prod data.</li>
+      <li><b>A safety story</b> a security review can accept: the corpus is redacted, single-tenant, and there's no model inference at request time.</li>
+    </ul>
+
+    <p class="reveal">This is the testing problem I went deep enough on that I'm building a product around it. But the principle stands on its own: if you want to test something non-deterministic, make its environment deterministic, and be honest about the redaction and generalization trade-offs instead of pretending they don't exist.</p>
+
+    <div class="nextrow">
+      <a href="redaction-floor.html">← redaction-floor</a>
+      <a href="test-outcomes.html">Next: Test outcomes, not outputs →</a>
+    </div>
+  </article>
+</div>
+
+<footer><div class="wrap"><span>NICK RIOS · Field Notes 🌊</span><span>Deploying AI agents into the real world.</span></div></footer>
+<script src="../sub.js"></script>
+</body></html>

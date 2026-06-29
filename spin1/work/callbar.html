@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talkdesk Callbar integration · Nick Rios</title>
+<meta name="description" content="Closing the enterprise integration gaps that were blocking $1M+ deals — real-time Zoom and Microsoft sync built into a CCaaS integration suite.">
+<link rel="stylesheet" href="../sub.css">
+<style>
+  .demos{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0 8px}
+  .demo{margin:0}
+  .demo .vframe{position:relative;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;background:#000;box-shadow:0 20px 44px -30px rgba(27,42,54,.55)}
+  .demo video{width:100%;display:block}
+  .demo figcaption{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:11px;line-height:1.5}.demo figcaption b{color:var(--ink-2)}
+  .demonote{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:4px}
+  @media(max-width:760px){.demos{grid-template-columns:1fr}}
+</style>
+</head><body>
+<nav><div class="wrap"><a class="logo" href="../index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="../index.html#about">About</a><a href="../index.html#work">Work</a><a href="../index.html#notes">Field Notes</a></div></div></nav>
+
+<div class="artwrap">
+  <header class="arthead">
+    <a class="back" href="../index.html#work">← Selected work</a>
+    <div class="cat">Case study · Enterprise integration · CCaaS</div>
+    <h1 class="arttitle">Talkdesk Callbar</h1>
+    <p class="dek">Built the real-time integrations that were the missing capability on enterprise deals — and the implementation methodology the services team kept using after.</p>
+    <div class="artmeta"><span><b>Role:</b> integrations engineer</span><span class="sep">·</span><span><b>Year:</b> 2019–2021</span><span class="sep">·</span><span><b>Stack:</b> custom middleware · Salesforce Lightning</span></div>
+  </header>
+
+  <article class="art">
+    <h3 class="reveal">The situation</h3>
+    <p class="reveal">Enterprise contact-center deals kept stalling at the same place: the prospect needed the agent toolbar to sync, in real time, with the tools their reps already lived in — Zoom and Microsoft. The capability gap wasn't a nice-to-have; it was a line-item blocker in the evaluation.</p>
+
+    <h3 class="reveal">What I built</h3>
+    <ul class="reveal">
+      <li>A <b>real-time Zoom + Microsoft sync</b> into the integration suite — presence and call state flowing both directions so reps didn't have to reconcile two tools by hand.</li>
+      <li>Custom <b>middleware</b> bridging the telephony events to Salesforce Lightning, where the customer's workflows actually ran.</li>
+      <li>The <b>implementation methodology</b> behind it — a repeatable onboarding and case-study challenge framework the services team adopted as its standard.</li>
+    </ul>
+
+    <h3 class="reveal">See it working</h3>
+    <p class="reveal">Two short demos of the Callbar integration — the dialer staying in sync with the tools reps already live in. Muted, sped up, and looping.</p>
+    <div class="demos">
+      <figure class="demo reveal">
+        <div class="vframe"><video autoplay muted loop playsinline preload="metadata" controls poster="media/teams.jpg"><source src="media/teams.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Callbar × Microsoft Teams</b> — the dialer alongside Teams calls &amp; speed dial.</figcaption>
+      </figure>
+      <figure class="demo reveal">
+        <div class="vframe"><video autoplay muted loop playsinline preload="metadata" controls poster="media/zoom.jpg"><source src="media/zoom.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Callbar × Zoom</b> — click-to-call and synced call history.</figcaption>
+      </figure>
+    </div>
+    <p class="demonote reveal">Product demos from the Talkdesk era · 2× speed · sound removed.</p>
+
+    <div class="kv reveal">
+      <div class="kvc"><div class="k">Outcome</div><div class="v"><span class="metricbig">$1M+</span><br><b>in deals moved across the line</b> once the gap was closed.</div></div>
+      <div class="kvc"><div class="k">Owned</div><div class="v"><b>The integration builds</b> and the onboarding framework the team still ran on after.</div></div>
+    </div>
+
+    <h3 class="reveal">Why it mattered</h3>
+    <p class="reveal">This is the pattern that runs through all my work: the deal isn't blocked by the slide deck, it's blocked by one capability that has to actually exist and actually work. Closing that gap — building the real thing, not promising it — is what unsticks the outcome.</p>
+
+    <blockquote class="reveal">The integration was the deal. Build the missing capability and the commercial conversation finishes itself.</blockquote>
+
+    <div class="stack reveal"><span class="chip">Custom middleware</span><span class="chip">Salesforce Lightning</span><span class="chip">Zoom API</span><span class="chip">Microsoft integration</span><span class="chip">Real-time sync</span></div>
+
+    <div class="nextrow">
+      <a href="canary.html">← Canary deployment</a>
+      <a href="ucla.html">Next: UCLA-backed venture →</a>
+    </div>
+  </article>
+</div>
+
+<footer><div class="wrap"><span>NICK RIOS · Engineer · Architect · Builder 🌊</span><span>I make AI agents survive production.</span></div></footer>
+<script src="../sub.js"></script>
+</body></html>

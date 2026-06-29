@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>redaction-floor — an agent skill · Field Notes · Nick Rios</title>
+<meta name="description" content="A copy-pasteable agent skill that enforces a PII redaction floor before any LLM call — with use-when / never-use-when and the data leak it prevents.">
+<link rel="stylesheet" href="../sub.css">
+</head><body>
+<nav><div class="wrap"><a class="logo" href="../index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="../index.html#about">About</a><a href="../index.html#work">Work</a><a href="../index.html#notes">Field Notes</a></div></div></nav>
+
+<div class="artwrap">
+  <header class="arthead">
+    <a class="back" href="../index.html#notes">← Field Notes</a>
+    <div class="cat">Skill · Evergreen · copy-pasteable</div>
+    <h1 class="arttitle">redaction-floor</h1>
+    <p class="dek">A skill that enforces a hard floor: no field on the deny-list ever reaches an LLM, an external API, or disk in the clear — checked at the boundary, not trusted upstream.</p>
+    <div class="artmeta"><span><b>Format:</b> agent skill</span><span class="sep">·</span><span><b>Maturity:</b> evergreen</span><span class="sep">·</span><span><b>Use:</b> any agent touching sensitive data</span></div>
+  </header>
+
+  <article class="art">
+    <h3 class="reveal">The leak it prevents</h3>
+    <p class="reveal">Agents are great at quietly widening blast radius. A tool result comes back with an <code>authorization</code> header or a customer email, the agent stuffs the whole blob into its next prompt "for context," and now your PII is in a third-party model's logs — or worse, in a corpus you later fine-tune on. The fix isn't "remember to scrub." It's a <b>floor</b>: a single chokepoint every outbound payload passes through, that strips the deny-list <em>before</em> the call, every time, with no per-call judgement required.</p>
+
+    <div class="callout reveal"><div class="cl">The rule</div><p>Redaction happens at <b>write/send time</b>, not read time. If you scrub on the way out, there's still a window where raw data sat somewhere it shouldn't. Scrub before the value is ever persisted or transmitted, and the artifact is safe by construction.</p></div>
+
+    <h3 class="reveal">The skill</h3>
+    <div class="codeblock reveal">
+      <div class="bar"><span>redaction-floor.md</span><button class="copy" data-copy="#skillsrc">copy</button></div>
+      <pre><code id="skillsrc"><span class="cm"># redaction-floor</span>
+<span class="cm"># Enforce a PII/secret redaction floor before any LLM call,</span>
+<span class="cm"># outbound API request, or write to disk.</span>
+
+<span class="kw">## Use when</span>
+- An agent will send tool output, retrieved data, or memory into a prompt.
+- A payload leaves the trust boundary: external API, log line, persisted file.
+- You are building a corpus you might later train or fine-tune on.
+
+<span class="kw">## Never skip when</span>
+- "It's just for debugging" — debug logs are the most common leak.
+- The data "looks clean" — verify against the deny-list, don't eyeball it.
+
+<span class="kw">## Deny-list (redact to <span class="st">[REDACTED]</span>)</span>
+- Auth: <span class="st">authorization</span>, <span class="st">cookie</span>, <span class="st">set-cookie</span>, any <span class="st">*-token</span> / <span class="st">*-key</span> / <span class="st">*-secret</span> header
+- Identity: email, phone, full name, government IDs, DOB
+- Financial: PAN / card numbers, IBAN, account numbers
+- Free-text: scan bodies, not just headers — PII hides in messages
+
+<span class="kw">## Procedure</span>
+1. Build the outbound payload.
+2. Pass it through ONE redact function at the boundary — never inline,
+   never optional. The floor is the only path out.
+3. Redact by KEY (deny-list) AND by VALUE (regex for emails, cards, tokens).
+4. Default to redaction on uncertainty. A false-positive redact is cheap;
+   a leak is not.
+5. Keep an opt-in, scoped "verbatim" mode for the rare case you truly need
+   raw data — explicit, logged, and never the default.
+
+<span class="kw">## Litmus</span>
+If a new code path can reach the LLM / network / disk WITHOUT crossing the
+floor, the floor doesn't exist yet. Make the boundary the only door.</code></pre>
+    </div>
+
+    <h3 class="reveal">Why a floor beats a filter</h3>
+    <p class="reveal">A filter is something you remember to apply. A floor is something a payload <b>cannot get around</b>. The whole value is in making the safe path the <em>only</em> path — one function, at one boundary, that everything funnels through. The day someone adds a new tool or a new log line, they get redaction for free instead of opening a hole nobody notices for six months.</p>
+
+    <blockquote class="reveal">Don't trust callers to scrub. Make the boundary the only door, and put the lock on the door.</blockquote>
+
+    <div class="nextrow">
+      <a href="../index.html#notes">← All Field Notes</a>
+      <a href="deterministic-replay.html">Next: Deterministic replay for agents →</a>
+    </div>
+  </article>
+</div>
+
+<footer><div class="wrap"><span>NICK RIOS · Field Notes 🌊</span><span>Deploying AI agents into the real world.</span></div></footer>
+<script src="../sub.js"></script>
+</body></html>

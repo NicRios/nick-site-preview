@@ -67,7 +67,24 @@
   .contact .row{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
   .copyemail{font-family:var(--mono);font-size:14px;border:1px solid var(--line-2);border-radius:8px;padding:13px 16px;cursor:pointer;display:inline-flex;gap:12px;align-items:center;background:#fff}.copyemail .c{color:var(--faint);font-size:11px}
   footer{border-top:1px solid var(--line);padding:30px 0;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  .reveal{opacity:0;transform:translateY(18px);transition:.8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+  /* cross-page transitions (supported browsers) */
+  @view-transition{navigation:auto}
+  /* page-load fade */
+  body{animation:pageIn .6s ease both}@keyframes pageIn{from{opacity:0}to{opacity:1}}
+  /* hero entrance stagger */
+  .hero .eyebrow,.hero h1,.hero .sub,.hero .brandline,.hero .ctas,.heroimg{opacity:0;animation:heroUp .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1{animation-delay:.07s}.heroimg{animation-delay:.16s}.hero .sub{animation-delay:.2s}.hero .brandline{animation-delay:.28s}.hero .ctas{animation-delay:.36s}
+  @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  /* nav scroll state + animated underlines */
+  nav{transition:box-shadow .3s,background .3s}nav.scrolled{box-shadow:0 12px 30px -22px rgba(27,42,54,.55)}
+  .navlinks a{position:relative}.navlinks a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}.navlinks a:hover::after{transform:scaleX(1);transform-origin:left}
+  .navcta{transition:color .25s,border-color .25s}.navcta:hover{color:var(--accent);border-color:var(--accent)}
+  /* gallery hover */
+  .gallery img{transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .45s;cursor:zoom-in}.gallery img:hover{transform:scale(1.015);filter:saturate(1.06) brightness(1.03)}
+  /* proof-strip + role hovers */
+  .role{transition:background .25s}.role:hover{background:var(--paper-2)}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}body,.hero .eyebrow,.hero h1,.hero .sub,.hero .brandline,.hero .ctas,.heroimg{animation:none!important;opacity:1!important}}
   @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:300px;position:static}}
 </style></head><body>
 <nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about">About</a><a href="#work">Work</a><a href="#notes">Field Notes</a></div><a class="navcta" href="#notes">Subscribe</a></div></nav>
@@ -81,7 +98,7 @@
       <p class="brandline">I deploy AI agents into real workflows and ship the outcome — from Ewa Beach, Hawaii, on the work's clock, not the office's.</p>
       <div class="ctas"><a href="#contact" class="btn mag">Book a working session →</a><a href="#notes" class="lnk">Read Field Notes →</a></div>
     </div>
-    <div class="heroimg reveal"><img src="nick.jpg" alt="Nick Rios"><span class="cap">Ewa Beach, HI</span></div>
+    <div class="heroimg"><img src="nick.jpg" alt="Nick Rios"></div>
   </div>
   <div class="proofstrip"><b>$2M ACV closed</b><span class="sep">·</span>Sr Solutions Architect @ <b>Tonic.ai</b><span class="sep">·</span>ex-<b>Clearbit</b> / <b>Talkdesk</b><span class="sep">·</span><b>UCLA</b> EE/CompE<span class="sep">·</span>AWS Certified</div>
 </div></header>
@@ -195,10 +212,10 @@
 
 <section id="work"><div class="wrap"><div class="kicker">Selected work — case studies</div>
   <div class="cases">
-    <a class="case reveal" href="#"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team — without touching production.</div><div class="body">Designed &amp; built a self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock agents are tested against. No live vendor calls, no prod data in CI, no LLM in the hot path.</div><div class="metric">My role: architecture + build, end-to-end → Read the case study</div></a>
-    <div class="case reveal"><div class="ctag">Release engineering · Kubernetes · forward-deployed</div><div class="ch">Canary production deployment</div><div class="lead"><b>Per-request canary rollout for a multi-tenant backend</b> — promote or roll back with one command.</div><div class="body">Forward-deployed into an unfamiliar Kubernetes codebase. Built a Kustomize stable/canary overlay using nginx-ingress canary annotations for per-request traffic splitting — chosen over replica-ratio splitting, which would couple the split to pod count. One-command deploy / promote / rollback via a Makefile, plus an incident runbook (503-after-promotion triage — capture logs before rollback, <code>rollout undo</code>) and a hardening plan: smoke-test gate before promote, gradual 10→25→50→100 ramp, auto-rollback on a failed rollout.</div><div class="metric">Owned: deployment design, traffic-splitting strategy, runbook</div></div>
-    <div class="case reveal"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built a real-time Zoom + Microsoft sync into the integration suite — the missing capability that helped move $1M+ deals across the line.</div><div class="metric">2020 · custom middleware + Salesforce Lightning</div></div>
-    <div class="case reveal"><div class="ctag">0→1 · founder</div><div class="ch">UCLA-backed venture</div><div class="lead"><b>Co-founded a startup</b> out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs, led agile development and go-to-market — the first time I owned a product from idea to pitch.</div><div class="metric">2017–18 · co-founder</div></div>
+    <a class="case reveal" href="work/gostly.html"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team — without touching production.</div><div class="body">Designed &amp; built a self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock agents are tested against. No live vendor calls, no prod data in CI, no LLM in the hot path.</div><div class="metric">My role: architecture + build, end-to-end → Read the case study</div></a>
+    <a class="case reveal" href="work/canary.html"><div class="ctag">Release engineering · Kubernetes · forward-deployed</div><div class="ch">Canary production deployment</div><div class="lead"><b>Per-request canary rollout for a multi-tenant backend</b> — promote or roll back with one command.</div><div class="body">Forward-deployed into an unfamiliar Kubernetes codebase. Built a Kustomize stable/canary overlay using nginx-ingress canary annotations for per-request traffic splitting — chosen over replica-ratio splitting, which would couple the split to pod count. One-command deploy / promote / rollback via a Makefile, plus an incident runbook (503-after-promotion triage — capture logs before rollback, <code>rollout undo</code>) and a hardening plan: smoke-test gate before promote, gradual 10→25→50→100 ramp, auto-rollback on a failed rollout.</div><div class="metric">Owned: deployment design, traffic-splitting strategy, runbook → Read the case study</div></a>
+    <a class="case reveal" href="work/callbar.html"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built a real-time Zoom + Microsoft sync into the integration suite — the missing capability that helped move $1M+ deals across the line.</div><div class="metric">2020 · custom middleware + Salesforce Lightning → Read the case study</div></a>
+    <a class="case reveal" href="work/ucla.html"><div class="ctag">0→1 · founder</div><div class="ch">UCLA-backed venture</div><div class="lead"><b>Co-founded a startup</b> out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs, led agile development and go-to-market — the first time I owned a product from idea to pitch.</div><div class="metric">2017–18 · co-founder → Read the case study</div></a>
   </div>
 </div></section>
 
@@ -228,10 +245,10 @@ a.fncard:hover{border-color:var(--accent);transform:translateY(-2px)}
     <form class="subform" onsubmit="return false"><label>Get Field Notes in your inbox</label><div class="row"><input type="email" placeholder="you@company.com" aria-label="email"><button class="btn2">Subscribe</button></div><span class="fine">Roughly fortnightly. No spam, unsubscribe anytime.</span></form>
   </div>
   <div class="fngrid">
-    <a class="fncard reveal" href="#"><div class="meta"><span class="badge">Skill</span><span class="mat">Evergreen</span></div><div class="fnt">redaction-floor</div><p>A copy-pasteable agent skill that enforces a PII redact-floor before any LLM call — with "use when / never use when" and the data-leak it prevents.</p><span class="fnl">Copy the skill →</span></a>
-    <a class="fncard reveal" href="#"><div class="meta"><span class="badge essay">Essay</span><span class="mat">Budding</span></div><div class="fnt">Deterministic replay for agents</div><p>How to make a non-deterministic system testable: capture-and-replay, verbatim vs redacted, and what it buys you in CI.</p><span class="fnl">Read →</span></a>
-    <a class="fncard reveal" href="#"><div class="meta"><span class="badge til">TIL</span><span class="mat">Seedling</span></div><div class="fnt">Test outcomes, not outputs</div><p>The one-line litmus that kills 80% of useless agent tests: would it still pass against a broken implementation?</p><span class="fnl">Read →</span></a>
-    <a class="fncard reveal" href="#"><div class="meta"><span class="badge log">Log</span><span class="mat">Budding</span></div><div class="fnt">Building Gostly in public</div><p>One shipped milestone, one hard decision, one number — every month.</p><span class="fnl">Follow along →</span></a>
+    <a class="fncard reveal" href="notes/redaction-floor.html"><div class="meta"><span class="badge">Skill</span><span class="mat">Evergreen</span></div><div class="fnt">redaction-floor</div><p>A copy-pasteable agent skill that enforces a PII redact-floor before any LLM call — with "use when / never use when" and the data-leak it prevents.</p><span class="fnl">Copy the skill →</span></a>
+    <a class="fncard reveal" href="notes/deterministic-replay.html"><div class="meta"><span class="badge essay">Essay</span><span class="mat">Budding</span></div><div class="fnt">Deterministic replay for agents</div><p>How to make a non-deterministic system testable: capture-and-replay, verbatim vs redacted, and what it buys you in CI.</p><span class="fnl">Read →</span></a>
+    <a class="fncard reveal" href="notes/test-outcomes.html"><div class="meta"><span class="badge til">TIL</span><span class="mat">Seedling</span></div><div class="fnt">Test outcomes, not outputs</div><p>The one-line litmus that kills 80% of useless agent tests: would it still pass against a broken implementation?</p><span class="fnl">Read →</span></a>
+    <a class="fncard reveal" href="notes/building-gostly.html"><div class="meta"><span class="badge log">Log</span><span class="mat">Budding</span></div><div class="fnt">Building Gostly in public</div><p>One shipped milestone, one hard decision, one number — every month.</p><span class="fnl">Follow along →</span></a>
   </div>
   <div class="fnnote">Four formats — <b>Skills</b> (copy-pasteable agent recipes) · <b>Notes / TIL</b> (quick) · <b>Essays</b> (the deep takes) · <b>Logs</b> (building Gostly in public).</div>
 </div></section>
@@ -266,6 +283,16 @@ a.fncard:hover{border-color:var(--accent);transform:translateY(-2px)}
     el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.2)+'px,'+((e.clientY-r.top-r.height/2)*0.2-2)+'px)';});
     el.addEventListener('mouseleave',function(){el.style.transform='';});
   });
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});},1300);
+  // staggered reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){
+      var sibs=[].slice.call(e.target.parentNode.children).filter(function(n){return n.classList&&n.classList.contains('reveal');});
+      e.target.style.transitionDelay=(Math.max(0,sibs.indexOf(e.target))*70)+'ms';
+      e.target.classList.add('in');io.unobserve(e.target);
+    }
+  });},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  setTimeout(function(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){el.classList.add('in');});},2000);
+  // nav shadow on scroll
+  var nv=document.querySelector('nav');var ns=function(){nv.classList.toggle('scrolled',window.scrollY>8);};ns();window.addEventListener('scroll',ns,{passive:true});
 </script></body></html>

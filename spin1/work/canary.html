@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per-request canary deployment · Nick Rios</title>
+<meta name="description" content="Forward-deployed into an unfamiliar Kubernetes codebase: a per-request canary rollout with one-command deploy, promote, and rollback.">
+<link rel="stylesheet" href="../sub.css">
+</head><body>
+<nav><div class="wrap"><a class="logo" href="../index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="../index.html#about">About</a><a href="../index.html#work">Work</a><a href="../index.html#notes">Field Notes</a></div></div></nav>
+
+<div class="artwrap">
+  <header class="arthead">
+    <a class="back" href="../index.html#work">← Selected work</a>
+    <div class="cat">Case study · Release engineering · forward-deployed</div>
+    <h1 class="arttitle">Per-request canary deployment</h1>
+    <p class="dek">A canary rollout for a multi-tenant backend where you promote or roll back the whole release with a single command — built from inside a codebase I'd never seen before.</p>
+    <div class="artmeta"><span><b>Role:</b> deployment design + runbook</span><span class="sep">·</span><span><b>Mode:</b> forward-deployed</span><span class="sep">·</span><span><b>Stack:</b> Kubernetes · nginx-ingress · Kustomize</span></div>
+  </header>
+
+  <article class="art">
+    <h3 class="reveal">The assignment</h3>
+    <p class="reveal">Drop into an unfamiliar Kubernetes codebase and make releases safe: a way to ship a new version to a slice of real traffic, watch it, and either promote it to everyone or pull it — fast, and without a 20-step checklist that only one person knows.</p>
+
+    <h3 class="reveal">The key decision</h3>
+    <p class="reveal">There are two common ways to split traffic for a canary, and they are <b>not</b> equivalent:</p>
+    <ul class="reveal">
+      <li><b>Replica-ratio splitting</b> — run N stable pods and 1 canary pod and let the load balancer spread requests across them. Simple, but the traffic split is now <b>coupled to pod count</b>: to send 5% to canary you need the replica math to work out, and autoscaling silently changes your split.</li>
+      <li><b>Per-request splitting</b> — the ingress decides, per request, whether it goes to stable or canary, independent of how many pods exist.</li>
+    </ul>
+    <p class="reveal">I chose <b>per-request splitting</b> using nginx-ingress canary annotations, with a Kustomize <code>stable</code>/<code>canary</code> overlay. The split is a number you set, not an emergent property of the cluster — so it stays correct when pods scale up or down.</p>
+
+    <h3 class="reveal">What I built</h3>
+    <ul class="reveal">
+      <li>A Kustomize base plus <code>stable</code> and <code>canary</code> overlays, so both tracks share one source of truth and diverge only where they must.</li>
+      <li>A <b>Makefile</b> wrapping the whole flow: one command to deploy a canary, one to promote it to stable, one to roll back — no memorized kubectl incantations.</li>
+      <li>An <b>incident runbook</b> for the failure I most expected: a 503 storm right after promotion. The rule it encodes — <b>capture logs <em>before</em> you roll back</b>, then <code>rollout undo</code> — because the rollback destroys the evidence you need to know why it broke.</li>
+    </ul>
+
+    <div class="kv reveal">
+      <div class="kvc"><div class="k">Promote</div><div class="v"><b>One command.</b> Canary becomes stable; no hand-edited manifests.</div></div>
+      <div class="kvc"><div class="k">Roll back</div><div class="v"><b>One command.</b> After logs are captured, not before.</div></div>
+      <div class="kvc"><div class="k">Traffic split</div><div class="v"><b>Decoupled from pod count</b> — survives autoscaling.</div></div>
+      <div class="kvc"><div class="k">Operator load</div><div class="v"><b>A runbook, not tribal knowledge.</b></div></div>
+    </div>
+
+    <h3 class="reveal">The hardening plan I left behind</h3>
+    <p class="reveal">Shipping the mechanism is half the job; the other half is the path to making it boring and safe to run repeatedly:</p>
+    <ul class="reveal">
+      <li>A <b>smoke-test gate</b> that must pass before a promote is allowed.</li>
+      <li>A <b>gradual ramp</b> — 10 → 25 → 50 → 100 — instead of a single cutover.</li>
+      <li><b>Auto-rollback</b> on a failed rollout, so a bad deploy doesn't depend on a human noticing.</li>
+    </ul>
+
+    <blockquote class="reveal">Forward-deployed work is judged on one thing: can the team operate what you built after you leave? That's why the runbook mattered as much as the rollout.</blockquote>
+
+    <div class="stack reveal"><span class="chip">Kubernetes</span><span class="chip">nginx-ingress</span><span class="chip">Kustomize overlays</span><span class="chip">Makefile release flow</span><span class="chip">Incident runbook</span></div>
+
+    <div class="nextrow">
+      <a href="gostly.html">← Gostly</a>
+      <a href="callbar.html">Next: Talkdesk Callbar →</a>
+    </div>
+  </article>
+</div>
+
+<footer><div class="wrap"><span>NICK RIOS · Engineer · Architect · Builder 🌊</span><span>I make AI agents survive production.</span></div></footer>
+<script src="../sub.js"></script>
+</body></html>

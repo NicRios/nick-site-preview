@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test outcomes, not outputs · Field Notes · Nick Rios</title>
+<meta name="description" content="The one-line litmus that kills most useless agent tests: would it still pass against a broken implementation?">
+<link rel="stylesheet" href="../sub.css">
+</head><body>
+<nav><div class="wrap"><a class="logo" href="../index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="../index.html#about">About</a><a href="../index.html#work">Work</a><a href="../index.html#notes">Field Notes</a></div></div></nav>
+
+<div class="artwrap">
+  <header class="arthead">
+    <a class="back" href="../index.html#notes">← Field Notes</a>
+    <div class="cat">TIL · Seedling</div>
+    <h1 class="arttitle">Test outcomes, not outputs</h1>
+    <p class="dek">One litmus question kills most of the tests that feel productive and protect nothing.</p>
+    <div class="artmeta"><span><b>Format:</b> TIL</span><span class="sep">·</span><span><b>Maturity:</b> seedling</span><span class="sep">·</span><span><b>Read:</b> ~2 min</span></div>
+  </header>
+
+  <article class="art">
+    <p class="reveal">Here's the litmus:</p>
+    <blockquote class="reveal">Would this test still pass against a broken implementation?</blockquote>
+    <p class="reveal">If the answer is yes, the test is theater. It's asserting that code <em>ran</em>, not that it <em>did the right thing</em>.</p>
+
+    <h3 class="reveal">The tells</h3>
+    <p class="reveal">A test is checking an <b>output</b> (worthless) instead of an <b>outcome</b> (real) when its assertions look like:</p>
+    <ul class="reveal">
+      <li>"returned <code>200</code>" / "didn't throw" / "compiled" / "logged OK"</li>
+      <li>"the function was called" — with no check on what it did</li>
+      <li>asserting on the shape of a response while ignoring whether the value is correct</li>
+    </ul>
+    <p class="reveal">All of those pass against an implementation that's quietly wrong. They give you a green check and zero protection.</p>
+
+    <h3 class="reveal">What an outcome test asserts</h3>
+    <ul class="reveal">
+      <li>A <b>state change</b> actually happened — the row is in the database, the file moved, the balance updated.</li>
+      <li>A <b>specific value</b> is correct, not just present.</li>
+      <li>A <b>behavior</b> holds under the case that matters — the edge, the failure, the thing a naive version gets wrong.</li>
+    </ul>
+
+    <p class="reveal">This bites hardest with agents, where it's tempting to assert "the agent responded" and call it covered. It responded — to a broken prompt, with a wrong answer, and your suite is green. Assert the <b>thing that was supposed to change</b>, or you've tested nothing.</p>
+
+    <div class="callout reveal"><div class="cl">Bonus rule</div><p>End a test-writing session with one adversarial pass: for each test, ask "how would I break the code and still pass this?" If you can answer easily, rewrite the assertion.</p></div>
+
+    <div class="nextrow">
+      <a href="deterministic-replay.html">← Deterministic replay</a>
+      <a href="building-gostly.html">Next: Building Gostly in public →</a>
+    </div>
+  </article>
+</div>
+
+<footer><div class="wrap"><span>NICK RIOS · Field Notes 🌊</span><span>Deploying AI agents into the real world.</span></div></footer>
+<script src="../sub.js"></script>
+</body></html>
