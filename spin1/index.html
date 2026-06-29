@@ -12,6 +12,7 @@
   .brand{display:flex;align-items:center;gap:11px}.avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line-2)}
   .logo{font-family:var(--mono);font-size:13px;letter-spacing:.06em}.logo b{color:var(--accent)}
   .navcta{font-family:var(--mono);font-size:12.5px;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .navlinks{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}.navlinks a:hover{color:var(--accent)}@media(max-width:760px){.navlinks{display:none}}
   /* hero */
   .hero{padding:96px 0 40px}
   .hgrid{display:grid;grid-template-columns:1.55fr .9fr;gap:48px;align-items:center}
@@ -65,7 +66,7 @@
   .reveal{opacity:0;transform:translateY(18px);transition:.8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
   @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:240px}}
 </style></head><body>
-<nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><a class="navcta" href="#contact">Book a working session</a></div></nav>
+<nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about">About</a><a href="#work">Work</a><a href="#notes">Field Notes</a></div><a class="navcta" href="#notes">Subscribe</a></div></nav>
 
 <header class="hero"><div class="wrap">
   <div class="hgrid">
@@ -73,7 +74,8 @@
       <div class="eyebrow">Forward-deployed engineer · Solutions Architect</div>
       <h1>Your AI works in the demo.<br>I make it <em>survive production.</em></h1>
       <p class="sub">I help founders and data/AI teams ship AI into <b>regulated, data-sensitive production</b> — tested against real traffic, safe under a security review. Not a demo. The whole solution.</p>
-      <div class="ctas"><a href="#contact" class="btn mag">Book a working session →</a><a href="#work" class="lnk">See the work</a></div>
+      <p class="brandline">I deploy AI agents into real workflows and ship the outcome — from Ewa Beach, Hawaii, on the work's clock, not the office's.</p>
+      <div class="ctas"><a href="#contact" class="btn mag">Book a working session →</a><a href="#notes" class="lnk">Read Field Notes →</a></div>
     </div>
     <div class="heroimg reveal"><img src="nick.jpg" alt="Nick Rios"><span class="cap">Ewa Beach, HI</span></div>
   </div>
@@ -83,7 +85,7 @@
 <section><div class="wrap"><div class="kicker">How I work</div>
   <div class="principles">
     <div class="pr reveal"><div class="pn">01</div><div class="ph">Start from the objective.</div><p>I begin with the business outcome and the constraints, not the tech. The stack is a means; the result is the point.</p></div>
-    <div class="pr reveal"><div class="pn">02</div><div class="ph">Name the trade-off.</div><p>Anyone can pick a solution. I'll tell you what I sacrificed to get it — and ship the reversible calls fast while taking the one-way doors slow.</p></div>
+    <div class="pr reveal"><div class="pn">02</div><div class="ph">Outcome over hours.</div><p>I price and deliver on results, not time. Deep work, async, intentional about where the hours go — built from Hawaii, balanced on purpose. That's what keeps the judgment sharp.</p></div>
     <div class="pr reveal"><div class="pn">03</div><div class="ph">The whole solution.</div><p>I own the outcome end-to-end — architecture, build, the un-fun edges, the production cutover — not a slide and a hand-off.</p></div>
   </div>
 </div></section>
@@ -93,7 +95,7 @@
     <div class="reveal">
       <p>Hi, I'm Nick. I work with founders and data/AI teams who need AI shipped into production — not slideware, not a demo that breaks the moment it meets a security review.</p>
       <p>I started in electrical &amp; computer engineering at <b>UCLA</b>, where I learned to think in systems and constraints before features. That pulled me into solutions architecture — the seat between what a business actually needs and what actually ships. At <b>Tonic</b> I owned the technical sale end to end; these days I spend most of my time forward-deployed inside one hard problem at a time, building <b>Gostly</b>.</p>
-      <p>I run all of this from <b>Ewa Beach, Hawaii</b> — remote-native by design, which means async, outcome-first, and shipping on whatever clock the work lives on. Off the keyboard, you'll find me in the water.</p>
+      <p>I run all of this from <b>Ewa Beach, Hawaii</b> — remote-native and intentional about time. I work async, price on outcomes instead of hours, and protect the balance on purpose, because that's what keeps the judgment sharp over a long project. Off the keyboard, you'll find me in the water.</p>
       <p class="belief">Most AI projects die in the gap between the demo and production. I live in that gap.</p>
       <div class="now"><b>Currently building →</b> Gostly — deterministic, in-tenant testing for AI agents in regulated environments.</div>
     </div>
@@ -130,6 +132,40 @@
   </div>
 </div></section>
 
+<style>
+.brandline{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--accent);max-width:50ch;line-height:1.45}
+.fntop{display:grid;grid-template-columns:1.4fr .9fr;gap:40px;align-items:end;margin-bottom:32px}
+.fntop h2{margin-bottom:0}.fnlead{font-size:16px;color:var(--muted);max-width:52ch;margin-top:14px}
+.subform label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);display:block;margin-bottom:10px}
+.subform .row{display:flex;gap:8px}.subform input{flex:1;border:1px solid var(--line-2);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:13px;background:#fff;color:var(--ink)}
+.subform .btn2{font-family:var(--mono);font-size:13px;background:var(--ink);color:var(--paper);border:none;border-radius:8px;padding:0 18px;cursor:pointer}.subform .btn2:hover{background:var(--accent)}
+.subform .fine{font-family:var(--mono);font-size:10.5px;color:var(--faint);display:block;margin-top:9px}
+.fngrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fncard{border:1px solid var(--line-2);border-radius:12px;padding:20px;background:#fff;display:flex;flex-direction:column;transition:.2s}
+a.fncard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.fncard .meta{display:flex;gap:8px;margin-bottom:12px;align-items:center}
+.badge{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:5px;background:var(--ink);color:var(--paper)}
+.badge.essay{background:var(--accent)}.badge.til{background:#9a7b2e}.badge.log{background:#3a5a8a}
+.mat{font-family:var(--mono);font-size:10px;color:var(--faint)}
+.fncard .fnt{font-family:var(--serif);font-size:20px;margin-bottom:8px}.fncard p{font-size:13.5px;color:var(--muted);flex:1}
+.fncard .fnl{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+.fnnote{margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--muted)}.fnnote b{color:var(--ink)}
+@media(max-width:840px){.fntop,.fngrid{grid-template-columns:1fr}}
+</style>
+<section id="notes"><div class="wrap"><div class="kicker">Field Notes — the newsletter</div>
+  <div class="fntop">
+    <div><h2>Notes on deploying AI agents into the real world.</h2><p class="fnlead">Agent skills, hard-won lessons, and ideas — from a forward-deployed engineer who ships from Hawaii. Written for the people who actually have to put agents into production.</p></div>
+    <form class="subform" onsubmit="return false"><label>Get Field Notes in your inbox</label><div class="row"><input type="email" placeholder="you@company.com" aria-label="email"><button class="btn2">Subscribe</button></div><span class="fine">Roughly fortnightly. No spam, unsubscribe anytime.</span></form>
+  </div>
+  <div class="fngrid">
+    <a class="fncard reveal" href="#"><div class="meta"><span class="badge">Skill</span><span class="mat">Evergreen</span></div><div class="fnt">redaction-floor</div><p>A copy-pasteable agent skill that enforces a PII redact-floor before any LLM call — with "use when / never use when" and the data-leak it prevents.</p><span class="fnl">Copy the skill →</span></a>
+    <a class="fncard reveal" href="#"><div class="meta"><span class="badge essay">Essay</span><span class="mat">Budding</span></div><div class="fnt">Deterministic replay for agents</div><p>How to make a non-deterministic system testable: capture-and-replay, verbatim vs redacted, and what it buys you in CI.</p><span class="fnl">Read →</span></a>
+    <a class="fncard reveal" href="#"><div class="meta"><span class="badge til">TIL</span><span class="mat">Seedling</span></div><div class="fnt">Test outcomes, not outputs</div><p>The one-line litmus that kills 80% of useless agent tests: would it still pass against a broken implementation?</p><span class="fnl">Read →</span></a>
+    <a class="fncard reveal" href="#"><div class="meta"><span class="badge log">Log</span><span class="mat">Budding</span></div><div class="fnt">Building Gostly in public</div><p>One shipped milestone, one hard decision, one number — every month.</p><span class="fnl">Follow along →</span></a>
+  </div>
+  <div class="fnnote">Four formats — <b>Skills</b> (copy-pasteable agent recipes) · <b>Notes / TIL</b> (quick) · <b>Essays</b> (the deep takes) · <b>Logs</b> (building Gostly in public).</div>
+</div></section>
+
 <section><div class="wrap"><div class="kicker">Work with me</div>
   <h2 style="margin-bottom:32px">Three ways in. Each scoped, priced with a floor, and guaranteed.</h2>
   <div class="ladder">
@@ -151,7 +187,7 @@
   <p class="csub">Tell me where it's stuck. If it's a fit, we'll book a working session — if it isn't, I'll tell you that too.</p>
   <div class="row"><a href="#" class="btn mag">Book a working session →</a><span class="copyemail" id="copy" data-email="nick@nick-rios.com">nick@nick-rios.com <span class="c">copy</span></span></div>
 </div></section>
-<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto;padding:0 36px"><span>NICK RIOS · forward-deployed engineer · nick-rios.com</span><span>I make AI agents survive production.</span></div></footer>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto;padding:0 36px"><span>NICK RIOS · Engineer · Architect · Builder · Ewa Beach, HI 🌊</span><span>I make AI agents survive production.</span></div></footer>
 
 <script>
   var ce=document.getElementById('copy');ce.addEventListener('click',function(){navigator.clipboard&&navigator.clipboard.writeText(ce.dataset.email);ce.querySelector('.c').textContent='copied ✓';});
