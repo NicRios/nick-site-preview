@@ -1,107 +1,167 @@
 <!-- @dsCard group="Nick-Rios.com spins" -->
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nick Rios — Forward-deployed engineer · Spin 1 (Tasteful)</title>
+<title>Nick Rios — Forward-deployed engineer & Solutions Architect</title>
 <style>
   :root{--paper:#f3f1ea;--paper-2:#fbfaf6;--ink:#13151a;--ink-2:#383d47;--muted:#6a7180;--faint:#9aa0a8;--line:#e1ded3;--line-2:#d2cec1;--accent:#0c7a57;--accent-2:#10a374;--accent-soft:#e7f1ec;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--serif:"Georgia","Times New Roman",serif;}
   *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 36px;position:relative;z-index:2}a{color:inherit;text-decoration:none}
-  nav{position:sticky;top:0;z-index:40;background:rgba(243,241,234,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:66px}.logo{font-family:var(--mono);font-size:13px;letter-spacing:.06em}.logo b{color:var(--accent)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 36px}a{color:inherit;text-decoration:none}
+  nav{position:sticky;top:0;z-index:40;background:rgba(243,241,234,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:66px}
+  .brand{display:flex;align-items:center;gap:11px}.avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line-2)}
+  .logo{font-family:var(--mono);font-size:13px;letter-spacing:.06em}.logo b{color:var(--accent)}
   .navcta{font-family:var(--mono);font-size:12.5px;border-bottom:1px solid var(--ink);padding-bottom:2px}
-  .hero{position:relative;padding:104px 0 72px;overflow:hidden}#heroCv{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.95}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
-  h1{font-family:var(--serif);font-weight:500;font-size:68px;line-height:1.02;letter-spacing:-0.025em;max-width:14ch}h1 em{font-style:italic;color:var(--accent)}
-  .sub{margin-top:26px;font-size:19px;color:var(--ink-2);max-width:52ch}.sub b{color:var(--ink);font-weight:600}
-  .ctas{margin-top:34px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-  .btn{font-family:var(--mono);font-size:13.5px;background:var(--ink);color:var(--paper);border-radius:8px;padding:14px 24px;border:none;cursor:pointer;transition:.18s}.btn:hover{background:var(--accent);transform:translateY(-2px)}
+  /* hero */
+  .hero{padding:96px 0 40px}
+  .hgrid{display:grid;grid-template-columns:1.55fr .9fr;gap:48px;align-items:center}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  h1{font-family:var(--serif);font-weight:500;font-size:60px;line-height:1.03;letter-spacing:-0.025em;max-width:13ch}h1 em{font-style:italic;color:var(--accent)}
+  .sub{margin-top:24px;font-size:18px;color:var(--ink-2);max-width:50ch}.sub b{color:var(--ink);font-weight:600}
+  .ctas{margin-top:32px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:13.5px;background:var(--ink);color:var(--paper);border-radius:8px;padding:14px 24px;border:none;cursor:pointer;transition:.18s;display:inline-block}.btn:hover{background:var(--accent);transform:translateY(-2px)}
   .lnk{font-family:var(--mono);font-size:13px;color:var(--muted);border-bottom:1px solid var(--line-2);padding-bottom:2px}.lnk:hover{color:var(--accent)}
-  .stats{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;border-top:1px solid var(--line-2);padding-top:26px}
-  .stat .sv{font-family:var(--serif);font-size:38px;letter-spacing:-0.02em;line-height:1}.stat .sv .u{color:var(--accent);font-size:24px}
-  .stat .sl{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:10px}
-  section{padding:78px 0;border-top:1px solid var(--line);position:relative;z-index:2;background:var(--paper)}
+  .heroimg{position:relative}
+  .heroimg img{width:100%;border-radius:16px;border:1px solid var(--line-2);filter:saturate(.96)}
+  .heroimg .cap{position:absolute;bottom:-12px;left:14px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:6px 11px;border-radius:7px}
+  .proofstrip{margin-top:54px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);padding:18px 0;font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .proofstrip b{color:var(--ink)}.proofstrip .sep{color:var(--faint)}
+  section{padding:74px 0;border-top:1px solid var(--line)}
   .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:28px;display:flex;align-items:center;gap:10px}.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
-  h2{font-family:var(--serif);font-weight:500;font-size:36px;letter-spacing:-0.01em;max-width:20ch}
-  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.pr{border-top:2px solid var(--ink);padding-top:18px}.pr .pn{font-family:var(--mono);font-size:12px;color:var(--accent)}.pr .ph{font-family:var(--serif);font-size:22px;margin:10px 0 9px}.pr p{font-size:14.5px;color:var(--muted)}
-  .exp-lead{font-size:17px;color:var(--muted);max-width:62ch;margin:-12px 0 32px}.exp{border-top:1px solid var(--line)}
-  .role{display:grid;grid-template-columns:.8fr 1.7fr;gap:30px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}.rhead{display:flex;flex-direction:column;gap:5px}
-  .rco{font-family:var(--serif);font-size:22px;font-weight:500}.rsub{font-family:var(--sans);font-weight:400;color:var(--faint);font-size:13px}.rdate{font-family:var(--mono);font-size:12px;color:var(--faint)}.rtitle{font-family:var(--mono);font-size:13px;color:var(--accent);margin-bottom:8px}.rdesc{font-size:14.5px;color:var(--muted)}.role.edu .rtitle{color:var(--muted)}
-  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .proj{border:1px solid var(--line-2);border-radius:12px;padding:24px 22px;background:#fff;display:flex;flex-direction:column;min-height:200px;transition:.2s}
-  a.proj:hover{border-color:var(--accent);box-shadow:0 18px 40px -28px rgba(12,122,87,.5);transform:translateY(-3px)}
-  .proj .ph{font-family:var(--serif);font-size:23px;margin-bottom:10px}.proj p{font-size:14px;color:var(--muted);flex:1}.proj .pl{margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+  h2{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-0.01em;max-width:20ch}
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.pr{border-top:2px solid var(--ink);padding-top:18px}.pr .pn{font-family:var(--mono);font-size:12px;color:var(--accent)}.pr .ph{font-family:var(--serif);font-size:21px;margin:10px 0 9px}.pr p{font-size:14.5px;color:var(--muted)}
+  /* about */
+  .about{display:grid;grid-template-columns:.85fr 1.5fr;gap:44px;align-items:start}
+  .about .ap{border-radius:14px;border:1px solid var(--line-2);overflow:hidden}.about .ap img{width:100%;display:block}
+  .about p{font-family:var(--serif);font-size:18px;line-height:1.62;color:var(--ink-2);margin-bottom:16px}.about p b{color:var(--ink)}
+  .about .belief{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink)}
+  .now{margin-top:24px;font-family:var(--mono);font-size:13px;color:var(--muted)}.now b{color:var(--accent)}
+  /* experience */
+  .exp{border-top:1px solid var(--line)}.role{padding:24px 0;border-bottom:1px solid var(--line)}
+  .rtop{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .rco{font-family:var(--serif);font-size:22px;font-weight:500}.rco .rsub{font-family:var(--sans);font-weight:400;color:var(--faint);font-size:13px}.rdate{font-family:var(--mono);font-size:12px;color:var(--faint)}
+  .rtitle{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin:6px 0 8px}
+  .rstar{font-size:15px;color:var(--ink-2);max-width:74ch}.rstar b{color:var(--ink)}
+  .rowned{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}.rowned b{color:var(--ink-2)}
+  .confid{margin-top:18px;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+  /* case studies */
+  .cases{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .case{border:1px solid var(--line-2);border-radius:13px;padding:24px 22px;background:#fff;display:flex;flex-direction:column;transition:.2s}
+  a.case:hover{border-color:var(--accent);box-shadow:0 18px 44px -28px rgba(12,122,87,.5);transform:translateY(-3px)}
+  .case .ctag{font-family:var(--mono);font-size:10.5px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+  .case .ch{font-family:var(--serif);font-size:22px;margin-bottom:8px}
+  .case .lead{font-size:14.5px;color:var(--ink-2);margin-bottom:10px}.case .lead b{color:var(--ink)}
+  .case .body{font-size:13.5px;color:var(--muted);flex:1}
+  .case .metric{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent);border-top:1px dashed var(--line-2);padding-top:11px}
+  /* offer */
   .ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-2);border-radius:12px;overflow:hidden}
-  .rung{padding:26px 24px;border-right:1px solid var(--line-2);background:#fff}.rung:last-child{border-right:none}.rung.feature{background:var(--accent-soft)}.rung .rn{font-family:var(--mono);font-size:11px;color:var(--faint)}.rung h4{font-family:var(--serif);font-size:22px;font-weight:500;margin:8px 0 8px}.rung p{font-size:14px;color:var(--muted)}.rung .guar{margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--accent);border-top:1px solid var(--line-2);padding-top:12px}
+  .rung{padding:26px 22px;border-right:1px solid var(--line-2);background:#fff}.rung:last-child{border-right:none}.rung.feature{background:var(--accent-soft)}.rung .rn{font-family:var(--mono);font-size:11px;color:var(--faint)}.rung h4{font-family:var(--serif);font-size:21px;font-weight:500;margin:8px 0 6px}.rung .first{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:8px}.rung p{font-size:13.5px;color:var(--muted)}.rung .guar{margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--accent);border-top:1px solid var(--line-2);padding-top:11px}
   .qual{display:grid;grid-template-columns:1fr 1fr;gap:40px}.qh{font-family:var(--mono);font-size:12px;margin-bottom:16px}.qbox.yes .qh{color:var(--accent)}.qbox.no .qh{color:var(--muted)}.qbox ul{list-style:none;display:flex;flex-direction:column;gap:12px}.qbox li{font-size:14.5px;color:var(--ink-2);padding-left:22px;position:relative}.qbox.yes li::before{content:"→";position:absolute;left:0;color:var(--accent)}.qbox.no li::before{content:"×";position:absolute;left:0;color:var(--faint)}
-  footer{border-top:2px solid var(--ink);padding:74px 0 50px}.fcta{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}.fcta h2{max-width:18ch}
-  .copyemail{font-family:var(--mono);font-size:14px;border:1px solid var(--line-2);border-radius:8px;padding:11px 16px;cursor:pointer;display:inline-flex;gap:12px;align-items:center;background:#fff}.copyemail .c{color:var(--faint);font-size:11px}
-  .foot-meta{margin-top:46px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--faint);flex-wrap:wrap;gap:10px}
+  /* contact */
+  .contact{text-align:center;background:var(--paper-2)}
+  .contact h2{margin:0 auto 18px;text-align:center}.contact .csub{color:var(--muted);font-size:16px;max-width:48ch;margin:0 auto 26px}
+  .contact .row{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+  .copyemail{font-family:var(--mono);font-size:14px;border:1px solid var(--line-2);border-radius:8px;padding:13px 16px;cursor:pointer;display:inline-flex;gap:12px;align-items:center;background:#fff}.copyemail .c{color:var(--faint);font-size:11px}
+  footer{border-top:1px solid var(--line);padding:30px 0;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .reveal{opacity:0;transform:translateY(18px);transition:.8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
-  @media(max-width:840px){h1{font-size:44px}.stats{grid-template-columns:1fr 1fr}.principles,.ladder,.qual,.role,.projects{grid-template-columns:1fr}}
+  @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:240px}}
 </style></head><body>
-<nav><div class="wrap"><div class="logo">NICK <b>RIOS</b></div><a class="navcta" href="#contact">Book a working session</a></div></nav>
-<header class="hero"><canvas id="heroCv"></canvas><div class="wrap">
-  <div class="eyebrow">Forward-deployed engineer</div>
-  <h1>Your AI works in the demo.<br>I make it <em>survive production.</em></h1>
-  <p class="sub">I parachute into teams and ship the AI systems they can't get over the line — <b>tested against real traffic, safe to run in regulated environments.</b> Not a feature. The whole solution.</p>
-  <div class="ctas"><a href="#contact" class="btn">Book a working session →</a><a href="#projects" class="lnk">See what I've shipped</a></div>
-  <div class="stats">
-    <div class="stat reveal"><div class="sv">$2<span class="u">M</span></div><div class="sl">ACV shipped, year one</div></div>
-    <div class="stat reveal"><div class="sv">50<span class="u">%+</span></div><div class="sl">faster resolution built</div></div>
-    <div class="stat reveal"><div class="sv">$1<span class="u">M+</span></div><div class="sl">deals unblocked</div></div>
-    <div class="stat reveal"><div class="sv">6<span class="u">yrs</span></div><div class="sl">embedded with enterprise</div></div>
+<nav><div class="wrap"><div class="brand"><img class="avatar" src="nick.jpg" alt="Nick Rios"><span class="logo">NICK <b>RIOS</b></span></div><a class="navcta" href="#contact">Book a working session</a></div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="hgrid">
+    <div>
+      <div class="eyebrow">Forward-deployed engineer · Solutions Architect</div>
+      <h1>Your AI works in the demo.<br>I make it <em>survive production.</em></h1>
+      <p class="sub">I help founders and data/AI teams ship AI into <b>regulated, data-sensitive production</b> — tested against real traffic, safe under a security review. Not a demo. The whole solution.</p>
+      <div class="ctas"><a href="#contact" class="btn mag">Book a working session →</a><a href="#work" class="lnk">See the work</a></div>
+    </div>
+    <div class="heroimg reveal"><img src="nick.jpg" alt="Nick Rios"><span class="cap">Ewa Beach, HI</span></div>
   </div>
+  <div class="proofstrip"><b>$2M ACV closed</b><span class="sep">·</span>Sr Solutions Architect @ <b>Tonic.ai</b><span class="sep">·</span>ex-<b>Clearbit</b> / <b>Talkdesk</b><span class="sep">·</span><b>UCLA</b> EE/CompE<span class="sep">·</span>AWS Certified</div>
 </div></header>
+
 <section><div class="wrap"><div class="kicker">How I work</div>
   <div class="principles">
-    <div class="pr reveal"><div class="pn">01</div><div class="ph">Production or nothing.</div><p>I don't ship demoware. If it can't run, repeat, and survive a real incident, it isn't done.</p></div>
-    <div class="pr reveal"><div class="pn">02</div><div class="ph">No magic in the hot path.</div><p>Fast, trustworthy systems don't get an LLM in the critical path. Determinism first, intelligence at the edges.</p></div>
-    <div class="pr reveal"><div class="pn">03</div><div class="ph">The whole solution.</div><p>I own the outcome end-to-end — architecture, build, the un-fun edges — not a slide and a hand-off.</p></div>
+    <div class="pr reveal"><div class="pn">01</div><div class="ph">Start from the objective.</div><p>I begin with the business outcome and the constraints, not the tech. The stack is a means; the result is the point.</p></div>
+    <div class="pr reveal"><div class="pn">02</div><div class="ph">Name the trade-off.</div><p>Anyone can pick a solution. I'll tell you what I sacrificed to get it — and ship the reversible calls fast while taking the one-way doors slow.</p></div>
+    <div class="pr reveal"><div class="pn">03</div><div class="ph">The whole solution.</div><p>I own the outcome end-to-end — architecture, build, the un-fun edges, the production cutover — not a slide and a hand-off.</p></div>
   </div>
 </div></section>
+
+<section id="about"><div class="wrap"><div class="kicker">About</div>
+  <div class="about">
+    <div class="ap reveal"><img src="nick.jpg" alt="Nick Rios"></div>
+    <div class="reveal">
+      <p>Hi, I'm Nick. I work with founders and data/AI teams who need AI shipped into production — not slideware, not a demo that breaks the moment it meets a security review.</p>
+      <p>I started in electrical &amp; computer engineering at <b>UCLA</b>, where I learned to think in systems and constraints before features. That pulled me into solutions architecture — the seat between what a business actually needs and what actually ships. At <b>Tonic</b> I owned the technical sale end to end; these days I spend most of my time forward-deployed inside one hard problem at a time, building <b>Gostly</b>.</p>
+      <p>I run all of this from <b>Ewa Beach, Hawaii</b> — remote-native by design, which means async, outcome-first, and shipping on whatever clock the work lives on. Off the keyboard, you'll find me in the water.</p>
+      <p class="belief">Most AI projects die in the gap between the demo and production. I live in that gap.</p>
+      <div class="now"><b>Currently building →</b> Gostly — deterministic, in-tenant testing for AI agents in regulated environments.</div>
+    </div>
+  </div>
+</div></section>
+
 <section><div class="wrap"><div class="kicker">Experience — forward-deployed before it had a name</div>
-  <p class="exp-lead">I've spent my career embedded with enterprise teams across the US and APAC — shipping the custom technical solution that closes the deal, not a slide and a hand-off.</p>
   <div class="exp">
-    <div class="role reveal"><div class="rhead"><span class="rco">Tonic.ai</span><span class="rdate">2022 — Present</span></div><div><div class="rtitle">Senior Solutions Architect</div><p class="rdesc">~$2M ACV in year one from strategic, customized demos and solution design. Owned full project lifecycles end-to-end, then relocated to lead pre/post-sales for enterprise APAC — now 40%+ of pipeline.</p></div></div>
-    <div class="role reveal"><div class="rhead"><span class="rco">Clearbit <span class="rsub">→ HubSpot</span></span><span class="rdate">2021 — 2022</span></div><div><div class="rtitle">Senior Technical Support Engineer</div><p class="rdesc">Re-implemented enterprise solutions across platforms and built the automation + reusable playbooks that cut first-response and resolution time by 50%+.</p></div></div>
-    <div class="role reveal"><div class="rhead"><span class="rco">Talkdesk</span><span class="rdate">2019 — 2021</span></div><div><div class="rtitle">Integrations / Expert Services Engineer</div><p class="rdesc">Built custom middleware and Salesforce integrations that moved $1M+ deals across the line — plus the implementation methodology the services team still runs on.</p></div></div>
-    <div class="role reveal edu"><div class="rhead"><span class="rco">UCLA</span><span class="rdate">2019</span></div><div><div class="rtitle">B.S. Electrical &amp; Computer Engineering</div></div></div>
+    <div class="role reveal"><div class="rtop"><div class="rco">Tonic.ai <span class="rsub">synthetic data · PII</span></div><div class="rdate">2022 — Present</div></div>
+      <div class="rtitle">Senior Solutions Architect</div>
+      <div class="rstar">Owned the technical sale end-to-end and <b>closed ~$2M ACV in year one</b> through customized demos and solution design; relocated to stand up the enterprise APAC motion, now <b>40%+ of pipeline</b>.</div>
+      <div class="rowned"><b>Owned:</b> requirements → architecture → deployment → post-impl. <b>Trade-off:</b> went deep on a few strategic accounts over breadth — fewer logos, far higher ACV.</div>
+    </div>
+    <div class="role reveal"><div class="rtop"><div class="rco">Clearbit <span class="rsub">→ HubSpot</span></div><div class="rdate">2021 — 2022</div></div>
+      <div class="rtitle">Senior Technical Support Engineer</div>
+      <div class="rstar">Re-implemented enterprise solutions across platforms and built the automation + reusable playbooks that <b>cut first-response and resolution time by 50%+</b>.</div>
+      <div class="rowned"><b>Owned:</b> the hardest enterprise escalations + the tooling that made them repeatable.</div>
+    </div>
+    <div class="role reveal"><div class="rtop"><div class="rco">Talkdesk</div><div class="rdate">2019 — 2021</div></div>
+      <div class="rtitle">Integrations / Expert Services Engineer</div>
+      <div class="rstar">Built custom middleware and Salesforce integrations that <b>moved $1M+ deals across the line</b> — plus the implementation methodology the services team still runs on.</div>
+      <div class="rowned"><b>Owned:</b> custom integration builds + the team's onboarding/case-study challenge framework.</div>
+    </div>
+  </div>
+  <div class="confid">Figures generalized to respect client + employer confidentiality.</div>
+</div></section>
+
+<section id="work"><div class="wrap"><div class="kicker">Selected work — case studies</div>
+  <div class="cases">
+    <a class="case reveal" href="#"><div class="ctag">AI infra · startup build · self-hosted</div><div class="ch">Gostly</div><div class="lead"><b>Zero agent test coverage → deterministic, production-safe replay</b> for a regulated team — without touching production.</div><div class="body">Designed &amp; built a self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock agents are tested against. No live vendor calls, no prod data in CI, no LLM in the hot path.</div><div class="metric">My role: architecture + build, end-to-end → Read the case study</div></a>
+    <div class="case reveal"><div class="ctag">Release engineering · forward-deployed</div><div class="ch">Canary production deployment</div><div class="lead"><b>A safe, one-command path to production</b> — built forward-deployed inside an unfamiliar codebase.</div><div class="body">Designed and shipped a canary production deployment with a Makefile-driven release flow: progressive rollout into prod with fast, reproducible rollback. Parachuted in cold and delivered a production-grade cutover process.</div><div class="metric">Owned: the release pipeline + canary strategy</div></div>
+    <div class="case reveal"><div class="ctag">Enterprise integration · CCaaS</div><div class="ch">Talkdesk Callbar</div><div class="lead"><b>Closed high-impact integration gaps</b> that were blocking enterprise deals.</div><div class="body">Built a real-time Zoom + Microsoft sync into the integration suite — the missing capability that helped move $1M+ deals across the line.</div><div class="metric">2020 · custom middleware + Salesforce Lightning</div></div>
+    <div class="case reveal"><div class="ctag">0→1 · founder</div><div class="ch">UCLA-backed venture</div><div class="lead"><b>Co-founded a startup</b> out of the UCLA accelerator.</div><div class="body">Pitched angels and VCs, led agile development and go-to-market — the first time I owned a product from idea to pitch.</div><div class="metric">2017–18 · co-founder</div></div>
   </div>
 </div></section>
-<section id="projects"><div class="wrap"><div class="kicker">Selected projects</div>
-  <div class="projects">
-    <a class="proj reveal" href="#"><div><div class="ph">Gostly</div><p>A self-hosted proxy that lets regulated teams test AI agents against real traffic — without touching production. Designed &amp; built end-to-end.</p></div><span class="pl">Case study →</span></a>
-    <div class="proj reveal"><div><div class="ph">Talkdesk Callbar</div><p>Real-time Zoom + Microsoft sync that closed high-impact integration gaps and helped move $1M+ deals across the line.</p></div><span class="pl">2020</span></div>
-    <div class="proj reveal"><div><div class="ph">UCLA-backed venture</div><p>Co-founded a startup out of the UCLA accelerator — pitched angels and VCs, led agile development and go-to-market.</p></div><span class="pl">2017–18</span></div>
-  </div>
-</div></section>
+
 <section><div class="wrap"><div class="kicker">Work with me</div>
   <h2 style="margin-bottom:32px">Three ways in. Each scoped, priced with a floor, and guaranteed.</h2>
   <div class="ladder">
-    <div class="rung reveal"><div class="rn">01 · fixed fee</div><h4>Discovery Sprint</h4><p>An audit of your AI system and a ranked production-readiness roadmap.</p><div class="guar">✓ Keep the roadmap either way.</div></div>
-    <div class="rung feature reveal"><div class="rn">02 · forward-deployed</div><h4>Embedded Build</h4><p>I parachute in and ship the working solution your team can't finish.</p><div class="guar">✓ Work continues free if deliverables don't land.</div></div>
-    <div class="rung reveal"><div class="rn">03 · retainer</div><h4>Advisory</h4><p>A fractional AI-execution lead on call for the judgment calls.</p><div class="guar">✓ Month-to-month.</div></div>
+    <div class="rung reveal"><div class="rn">01 · fixed fee</div><h4>Discovery Sprint</h4><div class="first">First step: a scoped architecture audit</div><p>An audit of your AI system and a ranked production-readiness roadmap — what's blocking it, in priority order.</p><div class="guar">✓ Keep the roadmap either way.</div></div>
+    <div class="rung feature reveal"><div class="rn">02 · forward-deployed</div><h4>Embedded Build</h4><div class="first">First step: a 2-week embedded sprint</div><p>I parachute in and ship the working solution your team can't finish.</p><div class="guar">✓ Work continues free if deliverables don't land.</div></div>
+    <div class="rung reveal"><div class="rn">03 · retainer</div><h4>Advisory</h4><div class="first">First step: a monthly architecture review</div><p>A fractional AI-execution lead on call for the judgment calls.</p><div class="guar">✓ Month-to-month.</div></div>
   </div>
 </div></section>
+
 <section><div class="wrap"><div class="kicker">Honest fit</div>
   <div class="qual">
     <div class="qbox yes reveal"><div class="qh">This is for you if —</div><ul><li>You have AI that demos well but isn't production-trustworthy.</li><li>You're in a regulated or data-sensitive environment.</li><li>You want someone who ships the thing, not a deck.</li></ul></div>
     <div class="qbox no reveal"><div class="qh">This isn't for you if —</div><ul><li>You want a logo on a slide and a quarterly check-in.</li><li>You want the cheapest hands, not the outcome.</li><li>"Good enough for the demo" is good enough.</li></ul></div>
   </div>
 </div></section>
-<footer id="contact"><div class="wrap"><div class="fcta"><h2>Have an AI system stuck between demo and production?</h2>
-  <div><a href="#" class="btn" style="margin-bottom:14px;display:inline-block">Book a working session →</a><br><span class="copyemail" id="copy" data-email="nick@nick-rios.com">nick@nick-rios.com <span class="c">copy</span></span></div>
-</div><div class="foot-meta"><span>NICK RIOS · forward-deployed engineer · nick-rios.com</span><span>I make AI agents survive production.</span></div></div></footer>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2>Have an AI system stuck between demo and production?</h2>
+  <p class="csub">Tell me where it's stuck. If it's a fit, we'll book a working session — if it isn't, I'll tell you that too.</p>
+  <div class="row"><a href="#" class="btn mag">Book a working session →</a><span class="copyemail" id="copy" data-email="nick@nick-rios.com">nick@nick-rios.com <span class="c">copy</span></span></div>
+</div></section>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto;padding:0 36px"><span>NICK RIOS · forward-deployed engineer · nick-rios.com</span><span>I make AI agents survive production.</span></div></footer>
+
 <script>
-  (function(){var cv=document.getElementById('heroCv'),ctx=cv.getContext('2d'),DPR=Math.min(2,window.devicePixelRatio||1),W,H,ps=[],cap={x:0,y:0};
-  function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}window.addEventListener('resize',size);size();
-  for(var i=0;i<120;i++)ps.push({x:Math.random()*W,y:Math.random()*H,vx:.28+Math.random()*.55,vy:(Math.random()-.5)*.2,r:1.2+Math.random()*2});
-  function step(){cap.x=W*.66;cap.y=H*.4;ctx.clearRect(0,0,W,H);
-    for(var i=0;i<ps.length;i++){for(var j=i+1;j<ps.length;j++){var a=ps[i],b=ps[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<128){ctx.strokeStyle='rgba(12,122,87,'+(.18*(1-d/128))+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}}
-    var g=ctx.createRadialGradient(cap.x,cap.y,0,cap.x,cap.y,150);g.addColorStop(0,'rgba(16,163,116,.2)');g.addColorStop(1,'rgba(16,163,116,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(cap.x,cap.y,150,0,7);ctx.fill();
-    for(var k=0;k<ps.length;k++){var p=ps[k];p.x+=p.vx;p.y+=p.vy;if(p.x>W+12){p.x=-12;p.y=Math.random()*H;}if(p.y<0||p.y>H)p.vy*=-1;var near=Math.abs(p.x-cap.x)<110&&Math.abs(p.y-cap.y)<110;ctx.fillStyle=near?'rgba(12,122,87,.9)':'rgba(19,21,26,.55)';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fill();}requestAnimationFrame(step);}step();})();
   var ce=document.getElementById('copy');ce.addEventListener('click',function(){navigator.clipboard&&navigator.clipboard.writeText(ce.dataset.email);ce.querySelector('.c').textContent='copied ✓';});
+  // magnetic CTAs (low strength ~0.2)
+  document.querySelectorAll('.mag').forEach(function(el){
+    el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.2)+'px,'+((e.clientY-r.top-r.height/2)*0.2-2)+'px)';});
+    el.addEventListener('mouseleave',function(){el.style.transform='';});
+  });
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});},1300);
 </script></body></html>
