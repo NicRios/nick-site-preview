@@ -12,7 +12,15 @@
   .brand{display:flex;align-items:center;gap:11px}.avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line-2)}
   .logo{font-family:var(--mono);font-size:13px;letter-spacing:.06em}.logo b{color:var(--accent)}
   .navcta{font-family:var(--mono);font-size:12.5px;border-bottom:1px solid var(--ink);padding-bottom:2px}
-  .navlinks{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}.navlinks a{transition:color .2s;position:relative}.navlinks a:hover{color:var(--accent)}.navlinks a.active{color:var(--accent)}.navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:var(--accent);border-radius:2px}@media(max-width:760px){.navlinks{display:none}}
+  .navlinks{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}.navlinks a{transition:color .2s;position:relative}.navlinks a:hover{color:var(--accent)}.navlinks a.active{color:var(--accent)}.navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:var(--accent);border-radius:2px}
+  @media(max-width:760px){
+    nav .wrap{flex-wrap:wrap;height:auto;min-height:54px}
+    .brand{order:1}.navcta{order:2}
+    .navlinks{order:3;flex-basis:100%;gap:20px;overflow-x:auto;padding:10px 2px 11px;margin-top:4px;border-top:1px solid var(--line);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .navlinks::-webkit-scrollbar{display:none}
+    .navlinks a{white-space:nowrap;flex:0 0 auto;font-size:13px}
+    .navlinks a.active::after{bottom:-3px}
+  }
   /* hero */
   .hero{padding:96px 0 40px}
   .hgrid{display:grid;grid-template-columns:1.55fr .9fr;gap:48px;align-items:center}
@@ -358,7 +366,7 @@
   // scroll-spy: highlight the nav link for the section in view
   var spyLinks={};document.querySelectorAll('.navlinks a[data-spy]').forEach(function(a){spyLinks[a.getAttribute('data-spy')]=a;});
   var spy=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(e.isIntersecting){for(var k in spyLinks)spyLinks[k].classList.remove('active');if(spyLinks[e.target.id])spyLinks[e.target.id].classList.add('active');}
+    if(e.isIntersecting){for(var k in spyLinks)spyLinks[k].classList.remove('active');var a=spyLinks[e.target.id];if(a){a.classList.add('active');var c=a.parentNode;if(c.scrollWidth>c.clientWidth)c.scrollTo({left:a.offsetLeft-c.clientWidth/2+a.clientWidth/2,behavior:'smooth'});}}
   });},{rootMargin:'-45% 0px -50% 0px'});
   ['about','experience','capabilities','work'].forEach(function(id){var el=document.getElementById(id);if(el)spy.observe(el);});
 </script></body></html>
