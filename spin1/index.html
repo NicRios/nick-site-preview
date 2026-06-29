@@ -109,48 +109,59 @@
 
 <style>
 .gintro{font-size:17px;color:var(--ink-2);max-width:58ch;margin-bottom:28px}.gintro b{color:var(--ink)}
-.gallery{display:flex;flex-wrap:wrap;gap:12px}
-.gallery img{display:block;border-radius:12px;border:1px solid var(--line-2);object-fit:cover;flex:0 0 auto;max-width:100%}
+.gallery{display:flex;flex-direction:column;gap:12px}
+.grow{display:flex;gap:12px}
+.gallery img{display:block;border-radius:12px;border:1px solid var(--line-2);object-fit:cover}
+@media(max-width:700px){
+  .grow{flex-wrap:wrap}
+  .gallery img{width:100%!important;height:auto!important}
+}
 </style>
 <section id="life"><div class="wrap"><div class="kicker">Off the keyboard</div>
   <p class="gintro">Most of my non-keyboard hours are in the water — freediving the deep blue off O'ahu with the pelagics — or on the sand with the dogs. And when the work calls for it, I'm in the room with the team. <b>The balance isn't a perk; it's the point.</b> It's what keeps the judgment sharp on the work that matters.</p>
   <div class="gallery" id="gallery">
-    <img src="photos/freedivers.jpg"    data-ar="1.5"   alt="Diving the deep blue with my partner, a reef shark passing by" loading="lazy">
-    <img src="photos/stingray.jpg"      data-ar="0.608" alt="Stingray resting on the sandy bottom" loading="lazy">
-    <img src="photos/dogs-sunset.jpg"   data-ar="0.75"  alt="The two dogs on the beach at sunset" loading="lazy">
-    <img src="photos/shore.jpg"         data-ar="1.333" alt="Golden-hour shoreline, windward O'ahu" loading="lazy">
-    <img src="photos/diver-descend.jpg" data-ar="0.667" alt="Descending headfirst into the blue past a reef shark" loading="lazy">
-    <img src="photos/dogs-beach.jpg"    data-ar="1.333" alt="The two dogs running on the beach" loading="lazy">
-    <img src="photos/manta.jpg"         data-ar="0.667" alt="Manta ray gliding over the reef at dusk" loading="lazy">
-    <img src="photos/sunset.jpg"        data-ar="1.333" alt="Sunset over the water off O'ahu" loading="lazy">
-    <img src="photos/reefshark.jpg"     data-ar="0.582" alt="Blacktip reef shark in clear shallow water" loading="lazy">
-    <img src="photos/dogs-yard.jpg"     data-ar="0.75"  alt="The two dogs at home in the yard" loading="lazy">
-    <img src="photos/meeting.jpg"       data-ar="1.333" alt="On-site, working a problem in the room with the team" loading="lazy">
+    <div class="grow">
+      <img src="photos/freedivers.jpg"    data-ar="1.5"   alt="Diving the deep blue with my partner, a reef shark passing by" loading="lazy">
+      <img src="photos/stingray.jpg"      data-ar="0.608" alt="Stingray resting on the sandy bottom" loading="lazy">
+      <img src="photos/dogs-sunset.jpg"   data-ar="0.75"  alt="The two dogs on the beach at sunset" loading="lazy">
+      <img src="photos/manta.jpg"         data-ar="0.667" alt="Manta ray gliding over the reef at dusk" loading="lazy">
+    </div>
+    <div class="grow">
+      <img src="photos/shore.jpg"         data-ar="1.333" alt="Golden-hour shoreline, windward O'ahu" loading="lazy">
+      <img src="photos/diver-descend.jpg" data-ar="0.667" alt="Descending headfirst into the blue past a reef shark" loading="lazy">
+      <img src="photos/reefshark.jpg"     data-ar="0.582" alt="Blacktip reef shark in clear shallow water" loading="lazy">
+      <img src="photos/dogs-beach.jpg"    data-ar="1.333" alt="The two dogs running on the beach" loading="lazy">
+    </div>
+    <div class="grow">
+      <img src="photos/sunset.jpg"        data-ar="1.333" alt="Sunset over the water off O'ahu" loading="lazy">
+      <img src="photos/dogs-yard.jpg"     data-ar="0.75"  alt="The two dogs at home in the yard" loading="lazy">
+      <img src="photos/meeting.jpg"       data-ar="1.333" alt="On-site, working a problem in the room with the team" loading="lazy">
+    </div>
   </div>
   <script>
   (function(){
     var g=document.getElementById('gallery'); if(!g) return;
-    var imgs=[].slice.call(g.querySelectorAll('img'));
+    var rows=[].slice.call(g.querySelectorAll('.grow'));
     var GAP=12;
     function layout(){
       var W=g.clientWidth; if(!W) return;
-      var target=W<560?180:260;          // ideal row height
-      var row=[], sumAR=0;
-      var rows=[];
-      imgs.forEach(function(im){
-        var ar=parseFloat(im.getAttribute('data-ar'));
-        row.push({im:im,ar:ar}); sumAR+=ar;
-        var rowW=sumAR*target+(row.length-1)*GAP;
-        if(rowW>=W){ rows.push({items:row,full:true}); row=[]; sumAR=0; }
+      // 1st pass: each row's natural justified height (fills full width, no crop)
+      var hs=rows.map(function(row){
+        var imgs=[].slice.call(row.querySelectorAll('img'));
+        var s=imgs.reduce(function(a,im){return a+parseFloat(im.getAttribute('data-ar'));},0);
+        return (W-(imgs.length-1)*GAP)/s;
       });
-      if(row.length) rows.push({items:row,full:false});
-      rows.forEach(function(r){
-        var s=r.items.reduce(function(a,o){return a+o.ar;},0);
-        var h=(W-(r.items.length-1)*GAP)/s;          // height that fills width exactly
-        if(!r.full) h=Math.min(h,target);            // don't blow up a short last row
-        r.items.forEach(function(o){
-          o.im.style.height=Math.round(h)+'px';
-          o.im.style.width=Math.floor(o.ar*h)+'px';
+      // common height = the average, so every row fills width and heights match;
+      // images flex to fill (tiny stretch absorbs the difference)
+      var H=Math.round(hs.reduce(function(a,b){return a+b;},0)/hs.length);
+      rows.forEach(function(row){
+        var imgs=[].slice.call(row.querySelectorAll('img'));
+        var s=imgs.reduce(function(a,im){return a+parseFloat(im.getAttribute('data-ar'));},0);
+        var avail=W-(imgs.length-1)*GAP;
+        imgs.forEach(function(im){
+          var ar=parseFloat(im.getAttribute('data-ar'));
+          im.style.height=H+'px';
+          im.style.width=Math.floor(avail*ar/s)+'px';   // widths sum to full width
         });
       });
     }
