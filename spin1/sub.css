@@ -21,10 +21,9 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:6
 
 /* article */
 .artwrap{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(20px,5vw,36px)}
-/* wide variant for grid/listing pages (contact, case studies, field-notes index) */
-.artwrap.wide{max-width:1040px}
-.artwrap.wide .dek{max-width:78ch}
-.artwrap.wide .art>p,.artwrap.wide .art>ul,.artwrap.wide .art>ol,.artwrap.wide .art>blockquote{max-width:72ch}
+/* wide variant for grid/listing pages (contact, case studies, field-notes index) —
+   fills the same width as the homepage and the page header, fluid below that */
+.artwrap.wide{max-width:1080px}
 .arthead{padding:clamp(52px,9vw,84px) 0 30px}
 .back{font-family:var(--mono);font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:.2s}
 .back:hover{color:var(--accent);gap:11px}
