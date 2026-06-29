@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Let's work together · Nick Rios</title>
-<meta name="description" content="Tell me where your AI system is stuck between demo and production. If it's a fit, we'll book a working session — if it isn't, I'll tell you that too.">
+<meta name="description" content="Tell me where your AI system is stuck between demo and production. If it's a fit, we'll book a working session, if it isn't, I'll tell you that too.">
 <link rel="stylesheet" href="sub.css">
 <style>
   .lead-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;margin:8px 0 10px}
@@ -34,29 +34,29 @@
     <a class="back" href="index.html">← Home</a>
     <div class="cat">Work with me</div>
     <h1 class="arttitle">Let's work together.</h1>
-    <p class="dek">Tell me where your AI system is stuck between demo and production. If it's a fit, we'll book a working session — and if it isn't, I'll tell you that too.</p>
+    <p class="dek">Tell me where your AI system is stuck between demo and production. If it's a fit, we'll book a working session, and if it isn't, I'll tell you that too.</p>
   </header>
 
   <article class="art">
     <h3 class="reveal">Three ways in</h3>
     <p class="reveal">Each one is scoped, priced with a floor, and guaranteed.</p>
     <div class="lead-row reveal">
-      <div class="rung"><div class="rn">01 · fixed fee</div><h4>Discovery Sprint</h4><div class="first">Start: a scoped architecture audit</div><p>An audit of your AI system and a ranked production-readiness roadmap — what's blocking it, in priority order.</p><div class="guar">✓ Keep the roadmap either way.</div></div>
+      <div class="rung"><div class="rn">01 · fixed fee</div><h4>Discovery Sprint</h4><div class="first">Start: a scoped architecture audit</div><p>An audit of your AI system and a ranked production-readiness roadmap, what's blocking it, in priority order.</p><div class="guar">✓ Keep the roadmap either way.</div></div>
       <div class="rung feature"><div class="rn">02 · forward-deployed</div><h4>Embedded Build</h4><div class="first">Start: a 2-week embedded sprint</div><p>I parachute in and ship the working solution your team can't finish.</p><div class="guar">✓ Work continues free if deliverables don't land.</div></div>
       <div class="rung"><div class="rn">03 · retainer</div><h4>Advisory</h4><div class="first">Start: a monthly architecture review</div><p>A fractional AI-execution lead on call for the judgment calls.</p><div class="guar">✓ Month-to-month.</div></div>
     </div>
 
     <h3 class="reveal">What a working session looks like</h3>
     <ul class="reveal">
-      <li>You walk me through where the AI is stuck — the demo that won't survive a security review, the agent with no test coverage, the integration that's blocking the deal.</li>
+      <li>You walk me through where the AI is stuck, the demo that won't survive a security review, the agent with no test coverage, the integration that's blocking the deal.</li>
       <li>We pull on the architecture together and find the real blocker, not the symptom.</li>
       <li>You leave with a concrete next step and an honest read on whether I'm the right person to build it.</li>
     </ul>
 
     <h3 class="reveal">Honest fit</h3>
     <div class="qual reveal">
-      <div class="qbox yes"><div class="qh">This is for you if —</div><ul><li>You have AI that demos well but isn't production-trustworthy.</li><li>You're in a regulated or data-sensitive environment.</li><li>You want someone who ships the thing, not a deck.</li></ul></div>
-      <div class="qbox no"><div class="qh">This isn't for you if —</div><ul><li>You want a logo on a slide and a quarterly check-in.</li><li>You want the cheapest hands, not the outcome.</li><li>"Good enough for the demo" is good enough.</li></ul></div>
+      <div class="qbox yes"><div class="qh">This is for you if:</div><ul><li>You have AI that demos well but isn't production-trustworthy.</li><li>You're in a regulated or data-sensitive environment.</li><li>You want someone who ships the thing, not a deck.</li></ul></div>
+      <div class="qbox no"><div class="qh">This isn’t for you if:</div><ul><li>You want a logo on a slide and a quarterly check-in.</li><li>You want the cheapest hands, not the outcome.</li><li>"Good enough for the demo" is good enough.</li></ul></div>
     </div>
 
     <h3 class="reveal">Get in touch</h3>
@@ -69,7 +69,7 @@
       <div><label for="ms">Where it's stuck</label><textarea id="ms" placeholder="The AI system, what it does, and where it's breaking down between demo and production…" required></textarea></div>
       <button class="send" type="submit">Send →</button>
     </form>
-    <div class="orline reveal">— or email me directly —</div>
+    <div class="orline reveal">or email me directly</div>
     <span class="emailbtn reveal" id="copyem" data-email="n.rios.1997@gmail.com" title="Click to copy">n.rios.1997@gmail.com <span class="c">copy</span></span>
 
     <div class="nextrow">
@@ -87,7 +87,7 @@
     e.preventDefault();
     var nm=document.getElementById('nm').value,em=document.getElementById('em').value,ms=document.getElementById('ms').value;
     var body='From: '+nm+' ('+em+')\n\n'+ms;
-    location.href='mailto:n.rios.1997@gmail.com?subject='+encodeURIComponent('Working session — '+nm)+'&body='+encodeURIComponent(body);
+    location.href='mailto:n.rios.1997@gmail.com?subject='+encodeURIComponent('Working session, '+nm)+'&body='+encodeURIComponent(body);
   });
   var ce=document.getElementById('copyem');
   if(ce)ce.addEventListener('click',function(){navigator.clipboard&&navigator.clipboard.writeText(ce.dataset.email);ce.querySelector('.c').textContent='copied ✓';});

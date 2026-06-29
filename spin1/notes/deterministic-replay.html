@@ -19,25 +19,25 @@
     <p class="reveal">The first time you try to write a real test for an AI agent, you hit a wall that doesn't exist for normal software: <b>the system under test is non-deterministic, and so are its dependencies.</b> The model picks different words each run. The vendor API returns different data, rate-limits you, or has an outage during your CI run. You can't assert on exact output, and you can't rely on the upstream being there. Most teams respond by not testing the agent at all.</p>
 
     <h3 class="reveal">Pin the dependencies, not the model</h3>
-    <p class="reveal">The move is to make the <em>environment</em> deterministic, even though the agent isn't. Capture real upstream traffic once — every request the agent makes and every response it gets — then replay that capture in CI. The agent still thinks freely; it just talks to a recording instead of the live world. Now a test failure means <b>the agent changed</b>, not that a third party had a bad afternoon.</p>
+    <p class="reveal">The move is to make the <em>environment</em> deterministic, even though the agent isn't. Capture real upstream traffic once, every request the agent makes and every response it gets, then replay that capture in CI. The agent still thinks freely; it just talks to a recording instead of the live world. Now a test failure means <b>the agent changed</b>, not that a third party had a bad afternoon.</p>
 
-    <h4 class="reveal">Verbatim vs redacted — you need both</h4>
-    <p class="reveal">There's a real tension here. For <b>replay fidelity</b> you want the capture verbatim — exact bytes, exact ordering. For <b>safety</b> you can't keep customer PII and secrets sitting in a fixture file that lands in your repo. The answer is two surfaces:</p>
+    <h4 class="reveal">Verbatim vs redacted, you need both</h4>
+    <p class="reveal">There's a real tension here. For <b>replay fidelity</b> you want the capture verbatim, exact bytes, exact ordering. For <b>safety</b> you can't keep customer PII and secrets sitting in a fixture file that lands in your repo. The answer is two surfaces:</p>
     <ul class="reveal">
       <li>An in-memory, verbatim capture for the <b>active session</b>, where fidelity matters and the data never outlives the run.</li>
-      <li>A <b>redacted-by-default</b> persisted corpus — scrubbed before it's written — that's safe to keep, share, and build on. Verbatim persistence is opt-in and scoped, never the default.</li>
+      <li>A <b>redacted-by-default</b> persisted corpus, scrubbed before it's written, that's safe to keep, share, and build on. Verbatim persistence is opt-in and scoped, never the default.</li>
     </ul>
 
     <h3 class="reveal">The hard part: generalization</h3>
-    <p class="reveal">Naive replay matches requests by exact hash. It works until the agent asks something one character different from what you recorded — then it 404s, and your "test" is just asserting that you recorded the exact script. Real agents don't replay scripts; they improvise around a theme.</p>
-    <p class="reveal">So the replay layer has to <b>generalize</b>: given an unseen-but-similar request, synthesize a coherent response in the right shape, with the right status, consistent with what it learned from the captured corpus. The discipline is to do that <b>offline</b> — learn the generalization from the corpus ahead of time — so that at test time replay stays deterministic and fast. The moment you put a live model in the replay hot path, you've reintroduced exactly the non-determinism and latency you were trying to delete.</p>
+    <p class="reveal">Naive replay matches requests by exact hash. It works until the agent asks something one character different from what you recorded, then it 404s, and your "test" is just asserting that you recorded the exact script. Real agents don't replay scripts; they improvise around a theme.</p>
+    <p class="reveal">So the replay layer has to <b>generalize</b>: given an unseen-but-similar request, synthesize a coherent response in the right shape, with the right status, consistent with what it learned from the captured corpus. The discipline is to do that <b>offline</b>, learn the generalization from the corpus ahead of time, so that at test time replay stays deterministic and fast. The moment you put a live model in the replay hot path, you've reintroduced exactly the non-determinism and latency you were trying to delete.</p>
 
     <blockquote class="reveal">Determinism isn't about freezing the agent. It's about freezing the world the agent runs against.</blockquote>
 
     <h3 class="reveal">What it buys you</h3>
     <ul class="reveal">
       <li><b>Tests that fail for one reason:</b> the agent's behavior changed.</li>
-      <li><b>CI with no live vendor calls</b> — no quota burned, no rate limits, no flakes, no prod data.</li>
+      <li><b>CI with no live vendor calls</b>, no quota burned, no rate limits, no flakes, no prod data.</li>
       <li><b>A safety story</b> a security review can accept: the corpus is redacted, single-tenant, and there's no model inference at request time.</li>
     </ul>
 

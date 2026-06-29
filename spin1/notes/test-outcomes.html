@@ -24,19 +24,19 @@
     <p class="reveal">A test is checking an <b>output</b> (worthless) instead of an <b>outcome</b> (real) when its assertions look like:</p>
     <ul class="reveal">
       <li>"returned <code>200</code>" / "didn't throw" / "compiled" / "logged OK"</li>
-      <li>"the function was called" — with no check on what it did</li>
+      <li>"the function was called", with no check on what it did</li>
       <li>asserting on the shape of a response while ignoring whether the value is correct</li>
     </ul>
     <p class="reveal">All of those pass against an implementation that's quietly wrong. They give you a green check and zero protection.</p>
 
     <h3 class="reveal">What an outcome test asserts</h3>
     <ul class="reveal">
-      <li>A <b>state change</b> actually happened — the row is in the database, the file moved, the balance updated.</li>
+      <li>A <b>state change</b> actually happened, the row is in the database, the file moved, the balance updated.</li>
       <li>A <b>specific value</b> is correct, not just present.</li>
-      <li>A <b>behavior</b> holds under the case that matters — the edge, the failure, the thing a naive version gets wrong.</li>
+      <li>A <b>behavior</b> holds under the case that matters, the edge, the failure, the thing a naive version gets wrong.</li>
     </ul>
 
-    <p class="reveal">This bites hardest with agents, where it's tempting to assert "the agent responded" and call it covered. It responded — to a broken prompt, with a wrong answer, and your suite is green. Assert the <b>thing that was supposed to change</b>, or you've tested nothing.</p>
+    <p class="reveal">This bites hardest with agents, where it's tempting to assert "the agent responded" and call it covered. It responded, to a broken prompt, with a wrong answer, and your suite is green. Assert the <b>thing that was supposed to change</b>, or you've tested nothing.</p>
 
     <div class="callout reveal"><div class="cl">Bonus rule</div><p>End a test-writing session with one adversarial pass: for each test, ask "how would I break the code and still pass this?" If you can answer easily, rewrite the assertion.</p></div>
 

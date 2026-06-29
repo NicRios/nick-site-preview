@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gostly — deterministic, production-safe testing for AI agents · Nick Rios</title>
-<meta name="description" content="Designing and building a self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock — so AI agents can be tested without touching production.">
+<title>Gostly, deterministic, production-safe testing for AI agents · Nick Rios</title>
+<meta name="description" content="Designing and building a self-hosted proxy that captures real upstream traffic, redacts it in-tenant, and replays it as a deterministic mock, so AI agents can be tested without touching production.">
 <link rel="stylesheet" href="../sub.css">
 </head><body>
 <nav><div class="wrap"><a class="logo" href="../index.html">NICK <b>RIOS</b></a><div class="navlinks"><a href="../index.html#about">About</a><a href="../index.html#work">Work</a><a href="../field-notes.html">Field Notes</a></div></div></nav>
@@ -11,42 +11,42 @@
     <a class="back" href="../index.html#work">← Selected work</a>
     <div class="cat">Case study · AI infrastructure · solo build</div>
     <h1 class="arttitle">Gostly</h1>
-    <p class="dek">Zero agent test coverage → deterministic, production-safe replay for a regulated team — without ever touching production.</p>
+    <p class="dek">Zero agent test coverage → deterministic, production-safe replay for a regulated team, without ever touching production.</p>
     <div class="artmeta"><span><b>Role:</b> architecture + build, end-to-end</span><span class="sep">·</span><span><b>Type:</b> self-hosted product</span><span class="sep">·</span><span><b>Status:</b> in active development</span></div>
   </header>
 
   <article class="art">
     <h3 class="reveal">The problem</h3>
-    <p class="reveal">Teams putting AI agents into regulated, data-sensitive environments hit the same wall: <b>you can't test an agent reliably against a live upstream.</b> The vendor API is slow, rate-limited, costs money on every call, and — worse — sending real customer data through it in CI is a compliance problem on its own. So agent test suites either don't exist, or they're flaky integration tests that break the moment a third party has a bad day.</p>
-    <p class="reveal">The naive fix — record-and-replay — gets you part way, then fails on the first request the agent makes that wasn't recorded verbatim. Real agents don't replay a fixed script; they ask slightly different questions every run.</p>
+    <p class="reveal">Teams putting AI agents into regulated, data-sensitive environments hit the same wall: <b>you can't test an agent reliably against a live upstream.</b> The vendor API is slow, rate-limited, costs money on every call, and, worse, sending real customer data through it in CI is a compliance problem on its own. So agent test suites either don't exist, or they're flaky integration tests that break the moment a third party has a bad day.</p>
+    <p class="reveal">The naive fix, record-and-replay, gets you part way, then fails on the first request the agent makes that wasn't recorded verbatim. Real agents don't replay a fixed script; they ask slightly different questions every run.</p>
 
     <h3 class="reveal">What I built</h3>
     <p class="reveal">A <b>self-hosted proxy</b> that sits in front of the agent's upstreams inside the customer's own tenant. It does three things, in order:</p>
     <ol class="reveal">
       <li><b>Captures</b> real upstream traffic transparently while the agent runs against production once.</li>
-      <li><b>Redacts</b> sensitive fields by default — on disk, before anything is persisted — so the saved corpus is safe to keep and safe to train on.</li>
-      <li><b>Replays</b> that corpus as a deterministic mock the agent is tested against — with a learned layer that <b>generalizes to unseen-but-similar requests</b> instead of 404-ing on anything it didn't record byte-for-byte.</li>
+      <li><b>Redacts</b> sensitive fields by default, on disk, before anything is persisted, so the saved corpus is safe to keep and safe to train on.</li>
+      <li><b>Replays</b> that corpus as a deterministic mock the agent is tested against, with a learned layer that <b>generalizes to unseen-but-similar requests</b> instead of 404-ing on anything it didn't record byte-for-byte.</li>
     </ol>
-    <p class="reveal">The defining constraint: <b>no LLM in the hot path, ever.</b> Replay is deterministic and fast. The learned generalization is trained offline from the captured corpus, not invoked live — so latency and behavior are predictable under a security review.</p>
+    <p class="reveal">The defining constraint: <b>no LLM in the hot path, ever.</b> Replay is deterministic and fast. The learned generalization is trained offline from the captured corpus, not invoked live, so latency and behavior are predictable under a security review.</p>
 
     <div class="kv reveal">
       <div class="kvc"><div class="k">Architecture invariant</div><div class="v"><b>Redact-by-default.</b> Sensitive data is scrubbed before it's persisted, not after. Verbatim capture is opt-in and scoped.</div></div>
-      <div class="kvc"><div class="k">Deployment</div><div class="v"><b>Single-tenant, self-hosted.</b> One deployment per customer — no shared data plane, no multi-tenant blast radius.</div></div>
+      <div class="kvc"><div class="k">Deployment</div><div class="v"><b>Single-tenant, self-hosted.</b> One deployment per customer, no shared data plane, no multi-tenant blast radius.</div></div>
       <div class="kvc"><div class="k">Hot path</div><div class="v"><b>No model inference at request time.</b> Replay is deterministic; generalization is learned offline.</div></div>
       <div class="kvc"><div class="k">What it replaces</div><div class="v"><b>Flaky live-API integration tests</b> and the "we don't test the agent" status quo.</div></div>
     </div>
 
     <h3 class="reveal">Why those choices</h3>
-    <p class="reveal"><b>Single-tenant self-host — because</b> the buyers are regulated. The strongest security story isn't "we encrypt your data," it's "your data never leaves your tenant." That's an architectural guarantee, not a policy promise.</p>
-    <p class="reveal"><b>Redact before persist — because</b> a redact-on-read design leaves a window where raw sensitive data sits on disk. Moving the floor to write-time means the stored artifact is safe by construction.</p>
-    <p class="reveal"><b>Learned generalization, run offline — because</b> exact-hash replay is brittle and a live LLM in the loop reintroduces the latency and non-determinism you were trying to remove. Training the generalization from the captured corpus keeps replay deterministic while still answering requests the agent never recorded.</p>
+    <p class="reveal"><b>Single-tenant self-host, because</b> the buyers are regulated. The strongest security story isn't "we encrypt your data," it's "your data never leaves your tenant." That's an architectural guarantee, not a policy promise.</p>
+    <p class="reveal"><b>Redact before persist, because</b> a redact-on-read design leaves a window where raw sensitive data sits on disk. Moving the floor to write-time means the stored artifact is safe by construction.</p>
+    <p class="reveal"><b>Learned generalization, run offline, because</b> exact-hash replay is brittle and a live LLM in the loop reintroduces the latency and non-determinism you were trying to remove. Training the generalization from the captured corpus keeps replay deterministic while still answering requests the agent never recorded.</p>
 
     <blockquote class="reveal">Most AI projects die in the gap between the demo and production. Gostly is the tooling I wished existed for closing that gap on the testing side.</blockquote>
 
     <h3 class="reveal">The stack</h3>
     <div class="stack reveal"><span class="chip">Rust proxy</span><span class="chip">TLS interception</span><span class="chip">Deterministic replay</span><span class="chip">LoRA-adapted small models (offline)</span><span class="chip">Docker Compose</span><span class="chip">Postgres</span><span class="chip">Self-hosted</span></div>
 
-    <div class="callout reveal"><div class="cl">My role</div><p>Solo: I designed the architecture, made the build/buy/cut calls, and wrote it — proxy, redaction layer, capture/replay engine, the offline training path, and the deployment story. The interesting work was the trade-offs, not the framework choices.</p></div>
+    <div class="callout reveal"><div class="cl">My role</div><p>Solo: I designed the architecture, made the build/buy/cut calls, and wrote it, proxy, redaction layer, capture/replay engine, the offline training path, and the deployment story. The interesting work was the trade-offs, not the framework choices.</p></div>
 
     <div class="nextrow">
       <a href="../index.html#work">← All work</a>
