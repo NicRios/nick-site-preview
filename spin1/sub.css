@@ -21,9 +21,12 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:6
 
 /* article */
 .artwrap{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(20px,5vw,36px)}
-/* wide variant for grid/listing pages (contact, case studies, field-notes index) —
-   fills the same width as the homepage and the page header, fluid below that */
+/* wide variant for grid/listing pages (contact, field-notes index) — grids fill the
+   full homepage width, fluid below that */
 .artwrap.wide{max-width:1080px}
+/* reading variant for prose case studies — a centered column (header + body + grids
+   share one width and sit centered, so being narrower than the nav reads as intentional) */
+.artwrap.read{max-width:900px}
 .arthead{padding:clamp(52px,9vw,84px) 0 30px}
 .back{font-family:var(--mono);font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:.2s}
 .back:hover{color:var(--accent);gap:11px}
