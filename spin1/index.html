@@ -32,7 +32,11 @@
   h2{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-0.01em;max-width:20ch}
   .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.pr{border-top:2px solid var(--ink);padding-top:18px}.pr .pn{font-family:var(--mono);font-size:12px;color:var(--accent)}.pr .ph{font-family:var(--serif);font-size:21px;margin:10px 0 9px}.pr p{font-size:14.5px;color:var(--muted)}
   /* about */
-  .about{max-width:72ch}
+  .about{display:grid;grid-template-columns:1.5fr .85fr;gap:48px;align-items:start}
+  .about>.reveal:first-child{max-width:64ch}
+  .ap{margin:0;position:sticky;top:40px}
+  .ap img{width:100%;border-radius:14px;border:1px solid var(--line-2);filter:saturate(.97);display:block}
+  .ap figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--muted);margin-top:10px;line-height:1.5}
   .about p{font-family:var(--serif);font-size:18px;line-height:1.62;color:var(--ink-2);margin-bottom:16px}.about p b{color:var(--ink)}
   .about .belief{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink)}
   .now{margin-top:24px;font-family:var(--mono);font-size:13px;color:var(--muted)}.now b{color:var(--accent)}
@@ -64,7 +68,7 @@
   .copyemail{font-family:var(--mono);font-size:14px;border:1px solid var(--line-2);border-radius:8px;padding:13px 16px;cursor:pointer;display:inline-flex;gap:12px;align-items:center;background:#fff}.copyemail .c{color:var(--faint);font-size:11px}
   footer{border-top:1px solid var(--line);padding:30px 0;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .reveal{opacity:0;transform:translateY(18px);transition:.8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
-  @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:240px}}
+  @media(max-width:840px){h1{font-size:42px}.hgrid,.about,.principles,.cases,.ladder,.qual{grid-template-columns:1fr}.heroimg{max-width:280px}.about .ap{max-width:300px;position:static}}
 </style></head><body>
 <nav><div class="wrap"><div class="brand"><span class="logo">NICK <b>RIOS</b></span></div><div class="navlinks"><a href="#about">About</a><a href="#work">Work</a><a href="#notes">Field Notes</a></div><a class="navcta" href="#notes">Subscribe</a></div></nav>
 
@@ -77,7 +81,7 @@
       <p class="brandline">I deploy AI agents into real workflows and ship the outcome — from Ewa Beach, Hawaii, on the work's clock, not the office's.</p>
       <div class="ctas"><a href="#contact" class="btn mag">Book a working session →</a><a href="#notes" class="lnk">Read Field Notes →</a></div>
     </div>
-    <div class="heroimg reveal"><img src="hero-sup.jpg" alt="Nick Rios paddling out on Kāneʻohe Bay, Koʻolau range behind"><span class="cap">Windward Oʻahu, HI</span></div>
+    <div class="heroimg reveal"><img src="nick.jpg" alt="Nick Rios"><span class="cap">Ewa Beach, HI</span></div>
   </div>
   <div class="proofstrip"><b>$2M ACV closed</b><span class="sep">·</span>Sr Solutions Architect @ <b>Tonic.ai</b><span class="sep">·</span>ex-<b>Clearbit</b> / <b>Talkdesk</b><span class="sep">·</span><b>UCLA</b> EE/CompE<span class="sep">·</span>AWS Certified</div>
 </div></header>
@@ -99,6 +103,7 @@
       <p class="belief">Most AI projects die in the gap between the demo and production. I live in that gap.</p>
       <div class="now"><b>Currently building →</b> Gostly — deterministic, in-tenant testing for AI agents in regulated environments.</div>
     </div>
+    <figure class="ap reveal"><img src="hero-sup.jpg" alt="Nick paddling out on Kāneʻohe Bay, Koʻolau range behind"><figcaption>Windward Oʻahu — the office is wherever the work is.</figcaption></figure>
   </div>
 </div></section>
 
@@ -109,12 +114,15 @@
 @media(max-width:840px){.gallery{columns:2}}@media(max-width:520px){.gallery{columns:1}}
 </style>
 <section id="life"><div class="wrap"><div class="kicker">Off the keyboard</div>
-  <p class="gintro">Most of my non-keyboard hours are in the water — freediving the deep blue off O'ahu with the pelagics. <b>The balance isn't a perk; it's the point.</b> It's what keeps the judgment sharp on the work that matters.</p>
+  <p class="gintro">Most of my non-keyboard hours are in the water — freediving the deep blue off O'ahu with the pelagics — or on the sand with the dogs. And when the work calls for it, I'm in the room with the team. <b>The balance isn't a perk; it's the point.</b> It's what keeps the judgment sharp on the work that matters.</p>
   <div class="gallery">
     <img src="photos/freedivers.jpg" alt="Two freedivers descending into the deep blue, a reef shark passing by" loading="lazy">
     <img src="photos/manta.jpg" alt="Manta ray gliding over the reef at dusk" loading="lazy">
+    <img src="photos/dogs-beach.jpg" alt="The two dogs running on the beach" loading="lazy">
     <img src="photos/reefshark.jpg" alt="Blacktip reef shark in clear shallow water" loading="lazy">
+    <img src="photos/meeting.jpg" alt="On-site, working a problem in the room with the team" loading="lazy">
     <img src="photos/stingray.jpg" alt="Stingray resting on the sandy bottom" loading="lazy">
+    <img src="photos/dogs-yard.jpg" alt="The two dogs at home in the yard" loading="lazy">
     <img src="photos/grayshark.jpg" alt="Gray reef shark cruising the blue water column" loading="lazy">
     <img src="photos/shore.jpg" alt="Golden-hour shoreline, windward O'ahu" loading="lazy">
   </div>
