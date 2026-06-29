@@ -190,26 +190,24 @@
 </div></section>
 
 <style>
-.acvstats{margin:20px 0 16px;display:flex;flex-direction:column;gap:15px}
-.acvrow{display:flex;gap:22px;align-items:baseline;flex-wrap:wrap}
-.acvbig{font-family:var(--serif);font-size:46px;font-weight:500;color:var(--accent);line-height:1;letter-spacing:-0.02em;min-width:128px}
-.acvbig sup{font-size:.46em;vertical-align:.7em;margin-left:1px;font-weight:500}
-.acvbig.sm{font-size:32px;color:var(--ink);min-width:128px}
-.acvtxt{font-size:14.5px;color:var(--ink-2);max-width:48ch;flex:1}.acvtxt b{color:var(--ink)}
-@media(max-width:760px){.acvbig{font-size:38px;min-width:0}.acvbig.sm{font-size:28px}}
+.acvbul{list-style:none;margin:16px 0;display:flex;flex-direction:column;gap:11px}
+.acvbul li{font-size:15.5px;color:var(--ink-2);padding-left:22px;position:relative;line-height:1.5}
+.acvbul li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+.acvbul li b{color:var(--ink)}
+.acvbul sup{font-size:.55em;vertical-align:.55em;margin-left:1px}
 </style>
 <section><div class="wrap"><div class="kicker">Experience — forward-deployed before it had a name</div>
   <div class="exp">
-    <div class="role reveal"><div class="rtop"><div class="rco">Tonic.ai <span class="rsub">synthetic data · PII</span></div><div class="rdate">2022 — Present</div></div>
+    <div class="role reveal"><div class="rtop"><div class="rco">Tonic.ai</div><div class="rdate">2022 — Present</div></div>
       <div class="rtitle">Senior Solutions Architect</div>
-      <div class="rstar">Technical lead on enterprise deals — I own the technical sale end-to-end: requirements, architecture, custom demos, the evaluation, as well as the deployment that follows. The number below is the part of revenue I was directly on the hook for.</div>
-      <div class="acvstats">
-        <div class="acvrow"><span class="acvbig">$3<sup>+</sup>M</span><span class="acvtxt"><b>New &amp; expansion ACV</b> on deals where I was the technical lead — Closed Won, directly attributed to me.</span></div>
-        <div class="acvrow"><span class="acvbig sm">~$5M</span><span class="acvtxt">When you include <b>renewals and out-year ramp</b> across those same accounts.</span></div>
-      </div>
-      <div class="rowned" style="margin-top:16px"><b>Owned:</b> requirements → architecture → custom demo → evaluation → deployment → post-impl. <b>Trade-off:</b> went deep on a few strategic accounts over breadth — fewer logos, far higher ACV per deal.</div>
+      <div class="rstar">Technical lead on enterprise deals — I own the technical sale end-to-end: requirements, architecture, custom demos, the evaluation, as well as the deployment that follows.</div>
+      <ul class="acvbul">
+        <li><b>$3<sup>+</sup>M</b> new &amp; expansion ACV on deals where I was the technical lead</li>
+        <li><b>~$5M</b> including renewals and out-year ramp</li>
+      </ul>
+      <div class="rowned"><b>Owned:</b> requirements → architecture → custom demo → evaluation → deployment → post-impl.</div>
     </div>
-    <div class="role reveal"><div class="rtop"><div class="rco">Clearbit <span class="rsub">→ HubSpot</span></div><div class="rdate">2021 — 2022</div></div>
+    <div class="role reveal"><div class="rtop"><div class="rco">Clearbit <span class="rsub">Acquired by HubSpot</span></div><div class="rdate">2021 — 2022</div></div>
       <div class="rtitle">Senior Technical Support Engineer</div>
       <div class="rstar">Re-implemented enterprise solutions across platforms and built the automation + reusable playbooks that <b>cut first-response and resolution time by 50%+</b>.</div>
       <div class="rowned"><b>Owned:</b> the hardest enterprise escalations + the tooling that made them repeatable.</div>
