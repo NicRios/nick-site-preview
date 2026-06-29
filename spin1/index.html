@@ -109,40 +109,54 @@
 
 <style>
 .gintro{font-size:17px;color:var(--ink-2);max-width:58ch;margin-bottom:28px}.gintro b{color:var(--ink)}
-.gallery{display:flex;gap:14px;align-items:stretch}
-.gcol{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
-.gallery img{width:100%;border-radius:12px;display:block;border:1px solid var(--line-2)}
-.gcol img{flex:0 0 auto}
-.gcol .fillbox{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--line-2);background-size:cover;background-position:center}
-.gcol .fillbox::before{content:"";position:absolute;inset:-12%;background:inherit;background-size:cover;background-position:center;filter:blur(24px) brightness(.82) saturate(1.05)}
-.gcol .fillbox img{position:relative;width:100%;height:100%;object-fit:contain;display:block;border:0;border-radius:0}
-@media(max-width:700px){
-  .gallery{flex-direction:column}
-  .gcol{flex-direction:column}
-  .gcol .fillbox{flex:0 0 auto;border:0}
-  .gcol .fillbox::before{display:none}
-  .gcol .fillbox img{height:auto;border:1px solid var(--line-2);border-radius:12px}
-}
+.gallery{display:flex;flex-wrap:wrap;gap:12px}
+.gallery img{display:block;border-radius:12px;border:1px solid var(--line-2);object-fit:cover;flex:0 0 auto;max-width:100%}
 </style>
 <section id="life"><div class="wrap"><div class="kicker">Off the keyboard</div>
   <p class="gintro">Most of my non-keyboard hours are in the water — freediving the deep blue off O'ahu with the pelagics — or on the sand with the dogs. And when the work calls for it, I'm in the room with the team. <b>The balance isn't a perk; it's the point.</b> It's what keeps the judgment sharp on the work that matters.</p>
-  <div class="gallery">
-    <div class="gcol">
-      <img src="photos/reefshark.jpg" alt="Blacktip reef shark in clear shallow water" loading="lazy">
-      <img src="photos/shore.jpg" alt="Golden-hour shoreline, windward O'ahu" loading="lazy">
-      <div class="fillbox" style="background-image:url('photos/freedivers.jpg')"><img src="photos/freedivers.jpg" alt="Diving the deep blue with my partner, a reef shark passing by" loading="lazy"></div>
-    </div>
-    <div class="gcol">
-      <img src="photos/grayshark.jpg" alt="Gray reef shark cruising the blue water column" loading="lazy">
-      <img src="photos/dogs-yard.jpg" alt="The two dogs at home in the yard" loading="lazy">
-      <div class="fillbox" style="background-image:url('photos/meeting.jpg')"><img src="photos/meeting.jpg" alt="On-site, working a problem in the room with the team" loading="lazy"></div>
-    </div>
-    <div class="gcol">
-      <img src="photos/stingray.jpg" alt="Stingray resting on the sandy bottom" loading="lazy">
-      <img src="photos/manta.jpg" alt="Manta ray gliding over the reef at dusk" loading="lazy">
-      <img src="photos/dogs-beach.jpg" alt="The two dogs running on the beach" loading="lazy">
-    </div>
+  <div class="gallery" id="gallery">
+    <img src="photos/freedivers.jpg" data-ar="1.5"   alt="Diving the deep blue with my partner, a reef shark passing by" loading="lazy">
+    <img src="photos/grayshark.jpg"  data-ar="0.667" alt="Gray reef shark cruising the blue water column" loading="lazy">
+    <img src="photos/manta.jpg"      data-ar="0.667" alt="Manta ray gliding over the reef at dusk" loading="lazy">
+    <img src="photos/shore.jpg"      data-ar="1.333" alt="Golden-hour shoreline, windward O'ahu" loading="lazy">
+    <img src="photos/stingray.jpg"   data-ar="0.608" alt="Stingray resting on the sandy bottom" loading="lazy">
+    <img src="photos/meeting.jpg"    data-ar="1.333" alt="On-site, working a problem in the room with the team" loading="lazy">
+    <img src="photos/reefshark.jpg"  data-ar="0.582" alt="Blacktip reef shark in clear shallow water" loading="lazy">
+    <img src="photos/dogs-beach.jpg" data-ar="1.333" alt="The two dogs running on the beach" loading="lazy">
+    <img src="photos/dogs-yard.jpg"  data-ar="0.75"  alt="The two dogs at home in the yard" loading="lazy">
   </div>
+  <script>
+  (function(){
+    var g=document.getElementById('gallery'); if(!g) return;
+    var imgs=[].slice.call(g.querySelectorAll('img'));
+    var GAP=12;
+    function layout(){
+      var W=g.clientWidth; if(!W) return;
+      var target=W<560?180:260;          // ideal row height
+      var row=[], sumAR=0;
+      var rows=[];
+      imgs.forEach(function(im){
+        var ar=parseFloat(im.getAttribute('data-ar'));
+        row.push({im:im,ar:ar}); sumAR+=ar;
+        var rowW=sumAR*target+(row.length-1)*GAP;
+        if(rowW>=W){ rows.push({items:row,full:true}); row=[]; sumAR=0; }
+      });
+      if(row.length) rows.push({items:row,full:false});
+      rows.forEach(function(r){
+        var s=r.items.reduce(function(a,o){return a+o.ar;},0);
+        var h=(W-(r.items.length-1)*GAP)/s;          // height that fills width exactly
+        if(!r.full) h=Math.min(h,target);            // don't blow up a short last row
+        r.items.forEach(function(o){
+          o.im.style.height=Math.round(h)+'px';
+          o.im.style.width=Math.floor(o.ar*h)+'px';
+        });
+      });
+    }
+    layout();
+    window.addEventListener('load',layout);
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(layout,120);});
+  })();
+  </script>
 </div></section>
 
 <section><div class="wrap"><div class="kicker">Experience — forward-deployed before it had a name</div>
