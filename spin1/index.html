@@ -48,7 +48,13 @@
   section{padding:74px 0;border-top:1px solid var(--line)}
   .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:28px;display:flex;align-items:center;gap:10px}.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
   h2{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-0.01em;max-width:20ch}
-  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.pr{border-top:2px solid var(--ink);padding-top:18px}.pr .pn{font-family:var(--mono);font-size:12px;color:var(--accent)}.pr .ph{font-family:var(--serif);font-size:21px;margin:10px 0 9px}.pr p{font-size:14.5px;color:var(--muted)}
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pr{position:relative;border:1px solid var(--line-2);border-radius:14px;padding:26px 24px 24px;background:#fff;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .pr:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 44px -28px rgba(0,78,114,.42)}
+  .pr .pn{position:absolute;top:8px;right:18px;font-family:var(--serif);font-weight:500;font-size:56px;line-height:1;color:var(--line);transition:color .22s}
+  .pr:hover .pn{color:var(--accent-soft)}
+  .pr .ph{position:relative;font-family:var(--serif);font-size:21px;margin:6px 0 10px;max-width:13ch}
+  .pr p{position:relative;font-size:14.5px;color:var(--muted);line-height:1.6}
   /* about */
   .about{display:grid;grid-template-columns:1.5fr .85fr;gap:48px;align-items:start}
   .about>.reveal:first-child{max-width:64ch}
@@ -57,7 +63,9 @@
   .ap figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--muted);margin-top:10px;line-height:1.5}
   .about p{font-family:var(--serif);font-size:18px;line-height:1.62;color:var(--ink-2);margin-bottom:16px}.about p b{color:var(--ink)}
   .about .belief{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink)}
-  .now{margin-top:24px;font-family:var(--mono);font-size:13px;color:var(--muted)}.now b{color:var(--accent)}
+  .now{margin-top:26px;display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--ink-2);border:1px solid var(--line-2);border-radius:10px;padding:12px 16px;background:var(--paper-2);line-height:1.5}.now b{color:var(--accent)}.now a{color:var(--accent);border-bottom:1px solid var(--line-2)}.now a:hover{border-color:var(--accent)}
+  .now .dot{flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(15,122,168,.5)}70%{box-shadow:0 0 0 7px rgba(15,122,168,0)}100%{box-shadow:0 0 0 0 rgba(15,122,168,0)}}
   /* experience */
   .exp{border-top:1px solid var(--line)}.role{padding:24px 0;border-bottom:1px solid var(--line)}
   .rtop{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
@@ -121,14 +129,6 @@
   <div class="proofstrip">Sr Solutions Architect @ <b>Tonic.ai</b><span class="sep">·</span>ex-<b>Clearbit</b> / <b>Talkdesk</b><span class="sep">·</span><b>UCLA</b> EE/CompE<span class="sep">·</span>AWS Certified</div>
 </div></header>
 
-<section><div class="wrap"><div class="kicker">How I work</div>
-  <div class="principles">
-    <div class="pr reveal"><div class="pn">01</div><div class="ph">Start from the objective.</div><p>I start from the business outcome and the real constraints, then choose a stack that gets there. The technology serves the result.</p></div>
-    <div class="pr reveal"><div class="pn">02</div><div class="ph">Outcome over hours.</div><p>I price and deliver on results rather than hours logged. I work deep and async from Hawaii, and I protect that balance on purpose, because it keeps my judgment sharp on long engagements.</p></div>
-    <div class="pr reveal"><div class="pn">03</div><div class="ph">The whole solution.</div><p>I own the outcome from architecture through the production cutover, including the un-fun edges that usually get handed off. You end up with a working system instead of a recommendation.</p></div>
-  </div>
-</div></section>
-
 <section id="about"><div class="wrap"><div class="kicker">About</div>
   <div class="about">
     <div class="reveal">
@@ -136,9 +136,17 @@
       <p>I studied electrical and computer engineering at <b>UCLA</b>, which taught me to think in systems and constraints before features. That led me into solutions architecture, the seat between what a business needs and what actually ships. At <b>Tonic</b> I owned the technical sale end to end. Lately most of my time goes to one hard problem at a time, building <b>Gostly</b>.</p>
       <p>I'm based in <b>Ewa Beach, Hawaii</b>, and work remotely with teams anywhere. I keep the schedule deliberate and guard time away from the keyboard, because that's where the energy for the hard problems comes from. When I'm not working, I'm usually in the water.</p>
       <p class="belief">Most AI projects die in the gap between the demo and production. I live in that gap.</p>
-      <div class="now"><b>Currently building →</b> Gostly: deterministic, in-tenant testing for AI agents in regulated environments.</div>
+      <div class="now"><span class="dot"></span><span><b>Currently building:</b> <a href="work/gostly.html">Gostly</a>, deterministic in-tenant testing for AI agents in regulated environments.</span></div>
     </div>
     <figure class="ap reveal"><img src="hero-sup.jpg" alt="Nick paddling out on Kāneʻohe Bay, Koʻolau range behind"><figcaption>Windward Oʻahu. A lot of the thinking happens out here.</figcaption></figure>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="kicker">How I work</div>
+  <div class="principles">
+    <div class="pr reveal"><div class="pn">01</div><div class="ph">Start from the objective.</div><p>I start from the business outcome and the real constraints, then choose a stack that gets there. The technology serves the result.</p></div>
+    <div class="pr reveal"><div class="pn">02</div><div class="ph">Outcome over hours.</div><p>I price and deliver on results rather than hours logged. I work deep and async from Hawaii, and I protect that balance on purpose, because it keeps my judgment sharp on long engagements.</p></div>
+    <div class="pr reveal"><div class="pn">03</div><div class="ph">The whole solution.</div><p>I own the outcome from architecture through the production cutover, including the un-fun edges that usually get handed off. You end up with a working system instead of a recommendation.</p></div>
   </div>
 </div></section>
 
