@@ -71,7 +71,7 @@
     }catch(_){}
     // analytics backup
     try{ if(window.posthog){ posthog.identify(em,{email:em,subscribed_field_notes:true}); posthog.capture('newsletter_subscribe',{email:em}); } }catch(_){}
-    sf.innerHTML='<div class="subok">Thanks &mdash; one more step: check your inbox and confirm your subscription.</div>';
+    sf.innerHTML='<div class="subok">Thanks &mdash; you\'re on the list. Field Notes will land in your inbox.</div>';
   });
 </script>
 <script src="analytics.js"></script>
