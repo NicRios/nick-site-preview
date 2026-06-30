@@ -61,8 +61,17 @@
     e.preventDefault();
     var em=(document.getElementById('subem').value||'').trim();
     if(!em) return;
+    // MailerLite — add to the owned list (account 2480012 / form 191683769302779601)
+    try{
+      fetch('https://assets.mailerlite.com/jsonp/2480012/forms/191683769302779601/subscribe',{
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body:'fields[email]='+encodeURIComponent(em)+'&ml-submit=1&anticsrf=true'
+      });
+    }catch(_){}
+    // analytics backup
     try{ if(window.posthog){ posthog.identify(em,{email:em,subscribed_field_notes:true}); posthog.capture('newsletter_subscribe',{email:em}); } }catch(_){}
-    sf.innerHTML='<div class="subok">Thanks &mdash; I\'ve got your email. You\'ll hear from me when the next Field Notes goes out.</div>';
+    sf.innerHTML='<div class="subok">Thanks &mdash; one more step: check your inbox and confirm your subscription.</div>';
   });
 </script>
 <script src="analytics.js"></script>
