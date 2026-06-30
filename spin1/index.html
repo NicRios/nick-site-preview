@@ -48,13 +48,14 @@
   section{padding:74px 0;border-top:1px solid var(--line)}
   .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:28px;display:flex;align-items:center;gap:10px}.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
   h2{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-0.01em;max-width:20ch}
-  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .pr{position:relative;border:1px solid var(--line-2);border-radius:14px;padding:26px 24px 24px;background:#fff;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
-  .pr:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 44px -28px rgba(0,78,114,.42)}
-  .pr .pn{position:absolute;top:8px;right:18px;font-family:var(--serif);font-weight:500;font-size:56px;line-height:1;color:var(--line);transition:color .22s}
-  .pr:hover .pn{color:var(--accent-soft)}
-  .pr .ph{position:relative;font-family:var(--serif);font-size:21px;margin:6px 0 10px;max-width:13ch}
-  .pr p{position:relative;font-size:14.5px;color:var(--muted);line-height:1.6}
+  .hiw{display:grid;grid-template-columns:.8fr 1.6fr;gap:50px;align-items:start}
+  .hiw-head{position:sticky;top:96px}.hiw-head .kicker{margin-bottom:18px}
+  .hiw-h{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.15;max-width:15ch;letter-spacing:-0.01em}
+  .hiw-list .pr{padding:22px 0;border-top:1px solid var(--line-2)}.hiw-list .pr:last-child{border-bottom:1px solid var(--line-2)}
+  .hiw-list .pr .ph{font-family:var(--serif);font-size:21px;margin-bottom:8px;display:flex;align-items:baseline;gap:13px}
+  .hiw-list .pr .ph .pn{font-family:var(--mono);font-size:12px;color:var(--accent-2);flex:0 0 auto}
+  .hiw-list .pr p{font-size:14.5px;color:var(--muted);line-height:1.62;max-width:60ch}
+  @media(max-width:840px){.hiw{grid-template-columns:1fr;gap:22px}.hiw-head{position:static}}
   /* about */
   .about{display:grid;grid-template-columns:1.5fr .85fr;gap:48px;align-items:start}
   .about>.reveal:first-child{max-width:64ch}
@@ -142,11 +143,14 @@
   </div>
 </div></section>
 
-<section><div class="wrap"><div class="kicker">How I work</div>
-  <div class="principles">
-    <div class="pr reveal"><div class="pn">01</div><div class="ph">Start from the objective.</div><p>I start from the business outcome and the real constraints, then choose a stack that gets there. The technology serves the result.</p></div>
-    <div class="pr reveal"><div class="pn">02</div><div class="ph">Outcome over hours.</div><p>I price and deliver on results rather than hours logged. I work deep and async from Hawaii, and I protect that balance on purpose, because it keeps my judgment sharp on long engagements.</p></div>
-    <div class="pr reveal"><div class="pn">03</div><div class="ph">The whole solution.</div><p>I own the outcome from architecture through the production cutover, including the un-fun edges that usually get handed off. You end up with a working system instead of a recommendation.</p></div>
+<section><div class="wrap">
+  <div class="hiw">
+    <div class="hiw-head reveal"><div class="kicker">How I work</div><h2 class="hiw-h">Three principles behind every engagement.</h2></div>
+    <div class="hiw-list">
+      <div class="pr reveal"><div class="ph"><span class="pn">01</span>Start from the objective.</div><p>I start from the business outcome and the real constraints, then choose a stack that gets there. The technology serves the result.</p></div>
+      <div class="pr reveal"><div class="ph"><span class="pn">02</span>Outcome over hours.</div><p>I price and deliver on results rather than hours logged. I work deep and async from Hawaii, and I protect that balance on purpose, because it keeps my judgment sharp on long engagements.</p></div>
+      <div class="pr reveal"><div class="ph"><span class="pn">03</span>The whole solution.</div><p>I own the outcome from architecture through the production cutover, including the un-fun edges that usually get handed off. You end up with a working system instead of a recommendation.</p></div>
+    </div>
   </div>
 </div></section>
 
