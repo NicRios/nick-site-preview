@@ -29,6 +29,9 @@
   .quote:hover{border-color:var(--accent);transform:translateY(-2px)}
   .quote p{font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--ink);margin-bottom:14px}
   .quote .who{font-family:var(--mono);font-size:12px;color:var(--muted)}.quote .who b{color:var(--accent)}
+  .hp{position:absolute !important;left:-9999px !important;width:1px;height:1px;overflow:hidden}
+  .formok{font-family:var(--mono);font-size:14px;color:var(--accent);line-height:1.6;border:1px solid var(--line-2);border-radius:10px;padding:18px 20px;background:var(--paper-2)}
+  .cferr{display:none;font-family:var(--mono);font-size:12.5px;color:#b3402a;margin-top:10px}
   @media(max-width:760px){.lead-row{grid-template-columns:1fr}.cform .frow{grid-template-columns:1fr}.qual{grid-template-columns:1fr}.quotes{grid-template-columns:1fr}}
 </style>
 </head><body>
@@ -80,8 +83,10 @@
         <div><label for="em">Email</label><input id="em" type="email" placeholder="you@company.com" required></div>
       </div>
       <div><label for="ms">Where it's stuck</label><textarea id="ms" placeholder="The AI system, what it does, and where it's breaking down between demo and production…" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
       <button class="send" type="submit">Send →</button>
     </form>
+    <div class="cferr" id="cferr">Something went wrong sending that. Email me directly at <b>n.rios.1997@gmail.com</b>.</div>
     <div class="orline reveal">or email me directly</div>
     <span class="emailbtn reveal" id="copyem" data-email="n.rios.1997@gmail.com" title="Click to copy">n.rios.1997@gmail.com <span class="c">copy</span></span>
 
@@ -95,13 +100,28 @@
 <footer><div class="wrap"><span>NICK RIOS · Engineer · Architect · Builder 🌊</span><span>I make AI agents survive production.</span></div></footer>
 <script src="sub.js"></script>
 <script>
+  var FORMS_URL='https://forms-service.n-rios1997.workers.dev/contact';
   var f=document.getElementById('cform');
   if(f)f.addEventListener('submit',function(e){
     e.preventDefault();
-    var nm=document.getElementById('nm').value,em=document.getElementById('em').value,ms=document.getElementById('ms').value;
-    var body='From: '+nm+' ('+em+')\n\n'+ms;
-    try{ if(window.posthog){ posthog.identify(em,{email:em,name:nm}); posthog.capture('contact_submission',{name:nm,email:em,message:ms}); } }catch(_){}
-    location.href='mailto:n.rios.1997@gmail.com?subject='+encodeURIComponent('Working session, '+nm)+'&body='+encodeURIComponent(body);
+    var nm=document.getElementById('nm').value.trim(),
+        em=document.getElementById('em').value.trim(),
+        ms=document.getElementById('ms').value.trim(),
+        hp=(document.getElementById('company')||{}).value||'';
+    if(!nm||!em||!ms) return;
+    var err=document.getElementById('cferr'); if(err) err.style.display='none';
+    var btn=f.querySelector('.send'); if(btn){btn.disabled=true;btn.textContent='Sending…';}
+    try{ if(window.posthog){ posthog.identify(em,{email:em,name:nm}); posthog.capture('contact_form_submit',{name:nm}); } }catch(_){}
+    function fail(){ if(btn){btn.disabled=false;btn.textContent='Send →';} if(err) err.style.display='block'; }
+    fetch(FORMS_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:nm,email:em,message:ms,source:'nick-rios',company:hp})})
+      .then(function(r){return r.json().catch(function(){return {ok:r.ok};});})
+      .then(function(d){
+        if(d&&d.ok){
+          var safe=function(s){return (s||'').replace(/[<>]/g,'');};
+          f.innerHTML='<div class="formok">Thanks, '+safe(nm)+'. Your message is in — I\'ll reply to '+safe(em)+' soon.</div>';
+        } else { fail(); }
+      }).catch(fail);
   });
   var ce=document.getElementById('copyem');
   if(ce)ce.addEventListener('click',function(){navigator.clipboard&&navigator.clipboard.writeText(ce.dataset.email);ce.querySelector('.c').textContent='copied ✓';});
