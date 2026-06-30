@@ -1,5 +1,5 @@
 /* Shared design system for Nick-Rios.com subpages */
-:root{--paper:#f6f1e7;--paper-2:#fbfaf4;--ink:#1b2a36;--ink-2:#44535f;--muted:#6a7a86;--faint:#9aa6ae;--line:#e6ddcd;--line-2:#dccfb9;--accent:#004e72;--accent-2:#0f7aa8;--accent-soft:#e3eef4;--coral:#ff6f43;--coral-soft:#ffbeaa;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--serif:"Georgia","Times New Roman",serif;}
+:root{--paper:#f6f1e7;--paper-2:#fbfaf4;--ink:#1b2a36;--ink-2:#44535f;--muted:#6a7a86;--faint:#9aa6ae;--line:#e6ddcd;--line-2:#dccfb9;--accent:#004e72;--accent-2:#0f7aa8;--accent-soft:#e3eef4;--coral:#0f7aa8;--coral-soft:#ffbeaa;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--serif:"Georgia","Times New Roman",serif;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 @view-transition{navigation:auto}
