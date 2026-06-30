@@ -100,6 +100,7 @@
     e.preventDefault();
     var nm=document.getElementById('nm').value,em=document.getElementById('em').value,ms=document.getElementById('ms').value;
     var body='From: '+nm+' ('+em+')\n\n'+ms;
+    try{ if(window.posthog){ posthog.identify(em,{email:em,name:nm}); posthog.capture('contact_submission',{name:nm,email:em,message:ms}); } }catch(_){}
     location.href='mailto:n.rios.1997@gmail.com?subject='+encodeURIComponent('Working session, '+nm)+'&body='+encodeURIComponent(body);
   });
   var ce=document.getElementById('copyem');
